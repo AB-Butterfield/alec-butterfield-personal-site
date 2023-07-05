@@ -8,11 +8,11 @@ export default function Header() {
                 <h1 className="header-personal-name">Alec Butterfield</h1>
             </div>
             <div className="header-bottom-section">
-                <a>Home</a>
-                <a>Projects</a>
-                <a>Goals</a>
-                <a>Gizmos</a>
-                <a>Contact</a>
+                <a href = "./home">Home</a>
+                <a href="./projects">Projects</a>
+                <a href="./goals">Goals</a>
+                <a href="./gizmos">Gizmos</a>
+                <a href = "./contact">Contact</a>
             </div>
         </div>
     )
