@@ -1,19 +1,48 @@
+a:link {
+  color: white;
+}
+a:visited {
+  color: white;
+}
+a:hover {
+  background-color: gold;
+  color: black;
+}
+.header-bottom-section {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 10%;
+  margin-right: 10%;
+  font-size: xx-large;
+  position: static;
+}
+.header-link {
+  display: flex;
+  text-decoration: none;
+  border-radius: 5px;
+  border-color: white;
+  border-style: solid;
+  border-width: thin;
+  padding: 5px;
+  transition: 0.3s;
+}
 .header-main-container {
   color: white;
+}
+.header-personal-img {
+  padding: 5px;
+  width: 200px;
+  border-radius: 100%;
+}
+.header-personal-name {
+  padding: 5px;
 }
 .header-top-section {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-.header-personal-img {
-  padding: 5px;
-}
-.header-personal-name {
-  padding: 5px;
-}
-.header-bottom-section {
-  display: flex;
+  height: 250px;
+  font-size: 60px;
 }
 .footer-main-container {
   display: flex;
@@ -46,15 +75,27 @@ body {
   display: flex;
   justify-content: center;
 }
+.home-what-I-do-container {
+  display: flex;
+  flex-direction: column;
+  padding-left: 5%;
+  padding-right: 5%;
+}
 .home-who-am-I-container {
   display: flex;
   flex-direction: column;
   padding-left: 5%;
   padding-right: 5%;
 }
-.home-what-I-do-container {
-  display: flex;
-  flex-direction: column;
-  padding-left: 5%;
-  padding-right: 5%;
+.skeleton {
+  height: 200px;
+  animation: skeleton-loading 1s linear infinite alternate;
+}
+@keyframes skeleton-loading {
+  0% {
+    background-color: hsl(200, 20%, 80%);
+  }
+  100% {
+    background-color: hsl(200, 20%, 95%);
+  }
 }
