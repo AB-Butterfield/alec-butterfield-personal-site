@@ -1,10 +1,32 @@
-.header-main-container {
+.header-bottom-section {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 10%;
+  margin-right: 10%;
+  font-size: x-large;
+}
+a:link {
   color: white;
 }
-.header-top-section {
+a:visited {
+  color: white;
+}
+a:hover {
+  background-color: gold;
+  color: black;
+}
+.header-link {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  text-decoration: none;
+  border-radius: 5px;
+  border-color: white;
+  border-style: solid;
+  border-width: thin;
+  padding: 5px;
+  transition: 0.3s;
+}
+.header-main-container {
+  color: white;
 }
 .header-personal-img {
   padding: 5px;
@@ -12,8 +34,10 @@
 .header-personal-name {
   padding: 5px;
 }
-.header-bottom-section {
+.header-top-section {
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .footer-main-container {
   display: flex;
