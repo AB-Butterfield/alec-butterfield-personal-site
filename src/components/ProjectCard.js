@@ -3,6 +3,7 @@ import React from "react";
 export default function ProjectCard(props) {
     let {id, title, img, website, dateCreated, description} = props
     let websiteMessage = ""
+    
     if (website) {
         websiteMessage = "Click here for the full website!"
     }
