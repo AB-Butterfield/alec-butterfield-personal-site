@@ -1,8 +1,9 @@
-
+import info from "../db/homeInfo"
 
 export default function Home() {
-    const whoAmIMessage = "This is who I am"
-    const whatIDoMessage = "This is what I do"
+    const messages = info[0]
+    const whoAmIMessage = messages.whoAmI
+    const whatIDoMessage = messages.whatDoIDo
 
     return (
         <div className="home-main-container">

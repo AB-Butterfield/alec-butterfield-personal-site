@@ -1,5 +1,13 @@
 
 
 export default function Goals() {
-    return <h1>Goals</h1>
+    return (
+        <div className="goals-main-container">
+            <h1>Goals: </h1>
+            <p>Improve my skills as a web developer, of course.</p>
+            <p>Look more into A.I.</p>
+            <p>ChatGPT: How can it help my page?</p>
+            <p>Azure: I want to give my A.I. a voice.</p>
+        </div>
+    )
 }

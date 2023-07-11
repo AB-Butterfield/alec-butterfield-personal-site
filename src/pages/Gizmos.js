@@ -1,5 +1,10 @@
 
 
 export default function Gizmos() {
-    return <h1>Gizmos</h1>
+    return (
+        <div className="gizmos-main-container">
+            <h1>Ideas: </h1>
+            <p>AI, </p>
+        </div>
+    )
 }
