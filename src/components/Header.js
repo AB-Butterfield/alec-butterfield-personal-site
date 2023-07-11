@@ -1,7 +1,9 @@
 import React from "react";
 import profilePic from "../images/Alec-Profile-Pic.jpg"
+import cautionLogo from "../images/caution-icon.png"
 
 export default function Header() {
+    const underConstructionText = "This site is still under construction. Check back later for updates!"
 
     return (
         <div className="header-main-container">
@@ -16,6 +18,11 @@ export default function Header() {
                 <a className="header-link" href="./gizmos">Gizmos</a>
                 <a className="header-link" href = "./contact">Contact</a>
             </div>
+            <div className="header-under-construction-container">
+                <div className="header-under-construction">
+                    <img className="header-caution-icon" src={cautionLogo} alt="caution"/>
+                    {underConstructionText}</div>
+                </div>
         </div>
     )
 }
