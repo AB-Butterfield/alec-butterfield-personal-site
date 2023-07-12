@@ -8,11 +8,11 @@ export default function Home() {
     return (
         <div className="home-main-container">
             <div className="home-who-am-I-container">
-                <h1 className="who-am-I">Who am I?</h1>
+                <div className="who-am-I">Who am I?</div>
                 <p>{whoAmIMessage}</p>
             </div>
             <div className="home-what-I-do-container">
-                <h1 className="what-do-I-do">What do I do?</h1>
+                <div className="what-do-I-do">What do I do?</div>
                 <p>{whatIDoMessage}</p>
             </div>
         </div>
