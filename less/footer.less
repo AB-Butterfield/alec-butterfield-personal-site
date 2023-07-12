@@ -9,23 +9,39 @@
     bottom: 0;
     right: 0;
     height: 7vh;
-    width: 97vw;
-    padding-left: 10px;
-    padding-right: 10px;
+    width: 98vw;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    // padding-left: 10px;
+    // padding-right: 10px;
     border-style:solid;
     border-color: white;
     border-radius: 10px;
-    min-width: 450px;
+    // min-width: 450px;
+    animation: footerFadeIn 3s;
 }
 
 .footer-contact {
     display: flex;
-    width: 60%;
+    width: 70%;
     padding-right: 5px;
-    
+    padding-left: 5px;    
 }
 
 .footer-information {
     display: flex;
     padding-right: 5px;
+    font-size: 12px;
+}
+
+@keyframes footerFadeIn {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 100;
+    }
 }
