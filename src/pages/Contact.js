@@ -5,7 +5,7 @@ import React from "react"
 
 export default function Contact() {
     const linkedIn = "http://www.linkedin.com/in/alec-butterfield"
-    const gitHub = "github.com/AB-Butterfield"
+    const gitHub = "http://www.github.com/AB-Butterfield"
     const email = "alec.butterfield1@gmail.com"
 
     return (

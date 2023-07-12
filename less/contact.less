@@ -1,12 +1,15 @@
 //Contact CSS
+@contactTextSize: 36px;
+
 .contact-page-contact-me {
     align-self: center;
     font-size: 72px;
-    text-decoration:underline;
+    // text-decoration:underline;
+    margin-bottom: 25px;
 }
 
 .contact-page-email {
-    font-size: 48px;
+    font-size: @contactTextSize;
     display: flex;
     align-items: center;
 }
@@ -14,10 +17,11 @@
 .contact-page-email-icon {
     height: 36px;
     width: 48px;
+    padding-right: 8px;
 }
 
 .contact-page-gitHub {
-    font-size: 48px;
+    font-size: @contactTextSize;
     display: flex;
     align-items: center;
 }
@@ -25,10 +29,11 @@
 .contact-page-gitHub-icon {
     height: 48px;
     width: 48px;
+    padding-right: 8px;
 }
 
 .contact-page-linkedIn {
-    font-size: 48px;
+    font-size: @contactTextSize;
     display: flex;
     align-items: center;
 }
@@ -36,6 +41,7 @@
 .contact-page-linkedIn-icon {
     height: 48px;
     width: 48px;
+    padding-right: 8px;
 }
 
 .contact-page-main-container {
@@ -45,4 +51,18 @@
 .contact-page-social-container {
     display: flex;
     flex-direction: column;
+}
+
+//Mobile friendly
+@media screen and (max-width: 450px) {
+    @mobileTextSize: 20px;
+    .contact-page-email {
+        font-size: @mobileTextSize
+    }
+    .contact-page-gitHub {
+        font-size: @mobileTextSize
+    }
+    .contact-page-linkedIn {
+        font-size: @mobileTextSize
+    }
 }

@@ -1,3 +1,57 @@
+.contact-page-contact-me {
+  align-self: center;
+  font-size: 72px;
+  margin-bottom: 25px;
+}
+.contact-page-email {
+  font-size: 36px;
+  display: flex;
+  align-items: center;
+}
+.contact-page-email-icon {
+  height: 36px;
+  width: 48px;
+  padding-right: 8px;
+}
+.contact-page-gitHub {
+  font-size: 36px;
+  display: flex;
+  align-items: center;
+}
+.contact-page-gitHub-icon {
+  height: 48px;
+  width: 48px;
+  padding-right: 8px;
+}
+.contact-page-linkedIn {
+  font-size: 36px;
+  display: flex;
+  align-items: center;
+}
+.contact-page-linkedIn-icon {
+  height: 48px;
+  width: 48px;
+  padding-right: 8px;
+}
+.contact-page-main-container {
+  display: flex;
+  justify-content: center;
+}
+.contact-page-social-container {
+  display: flex;
+  flex-direction: column;
+}
+@media screen and (max-width: 450px) {
+  .contact-page-email {
+    font-size: 20px;
+  }
+  .contact-page-gitHub {
+    font-size: 20px;
+  }
+  .contact-page-linkedIn {
+    font-size: 20px;
+  }
+}
 .footer-main-container {
   display: flex;
   justify-content: space-between;
@@ -37,6 +91,13 @@
   100% {
     opacity: 100;
   }
+}
+.gizmos-main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 62px;
+  padding-top: 40px;
 }
 a:link {
   color: white;
@@ -136,6 +197,41 @@ a:hover {
     opacity: 100;
   }
 }
+body {
+  background-color: #020f24;
+  color: white;
+}
+.home-main-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  min-width: 350px;
+}
+.home-who-am-I-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+.home-what-I-do-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-bottom: 70px;
+}
+.what-do-I-do {
+  font-size: 48px;
+  display: flex;
+  align-self: center;
+}
+.who-am-I {
+  font-size: 48px;
+  display: flex;
+  align-self: center;
+}
 .projects-main-container {
   display: flex;
   flex-direction: column;
@@ -191,77 +287,4 @@ a:hover {
 }
 .single-project-title {
   font-size: 56px;
-}
-.contact-page-contact-me {
-  align-self: center;
-  font-size: 72px;
-  text-decoration: underline;
-}
-.contact-page-email {
-  font-size: 48px;
-  display: flex;
-  align-items: center;
-}
-.contact-page-email-icon {
-  height: 36px;
-  width: 48px;
-}
-.contact-page-gitHub {
-  font-size: 48px;
-  display: flex;
-  align-items: center;
-}
-.contact-page-gitHub-icon {
-  height: 48px;
-  width: 48px;
-}
-.contact-page-linkedIn {
-  font-size: 48px;
-  display: flex;
-  align-items: center;
-}
-.contact-page-linkedIn-icon {
-  height: 48px;
-  width: 48px;
-}
-.contact-page-main-container {
-  display: flex;
-  justify-content: center;
-}
-.contact-page-social-container {
-  display: flex;
-  flex-direction: column;
-}
-body {
-  background-color: #020f24;
-  color: white;
-}
-.home-main-container {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  min-width: 350px;
-}
-.home-who-am-I-container {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  padding-left: 5%;
-  padding-right: 5%;
-}
-.home-what-I-do-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-left: 5%;
-  padding-right: 5%;
-  padding-bottom: 50px;
-}
-.what-do-I-do {
-  display: flex;
-  align-self: center;
-}
-.who-am-I {
-  display: flex;
-  align-self: center;
 }
