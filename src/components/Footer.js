@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Footer() {
 
-    const contactMeInfo = "Do you need an enthusiastic individual to join your development team? Email me anytime, at email@gmail.com!"
+    const contactMeInfo = "Do you need an enthusiastic individual to join your development team? Email me anytime, at alec.butterfield1@gmail.com!"
     const pageInfo = "site by Alec Butterfield - 2023"
     return (
         <div>
