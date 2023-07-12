@@ -4,6 +4,21 @@ import cautionLogo from "../images/caution-icon.png"
 
 export default function Header() {
     const underConstructionText = "This site is still under construction. Check back later for updates!"
+    var header = document.getElementsByClassName("header-main-container");
+    var sticky = header.offsetTop;
+
+    console.log("header", header[0])
+    console.log("sticky", sticky)
+
+    window.onscroll = function() {makeStickyHeader()};
+
+    function makeStickyHeader() {
+        if (window.scrollY > sticky) {
+            header.classList.add("sticky")
+        } else {
+            header.classList.remove("sticky")
+        }
+    }
 
     return (
         <div className="header-main-container">

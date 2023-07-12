@@ -95,6 +95,11 @@ a:hover {
   color: black;
   font-weight: 700;
 }
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
 .projects-main-container {
   display: flex;
   flex-direction: column;
