@@ -1,12 +1,13 @@
 import React from "react"
 import ProjectCard from "../components/ProjectCard"
-import data from "../db/projectsInfo"
+import {projectsInfo} from "../db/projectsInfo"
 
 export default function Projects() {
-    const projectArray = data.map(item => {
+    
+    const projectArray = projectsInfo.map(item => {
         return (
             <ProjectCard
-            key={data.id}
+            key={projectsInfo.id}
             {...item}
             />
         )
