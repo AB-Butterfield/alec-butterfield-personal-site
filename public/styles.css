@@ -36,12 +36,7 @@ a:hover {
   color: black;
 }
 .header-bottom-section {
-  display: flex;
-  justify-content: space-between;
-  margin-left: 10%;
-  margin-right: 10%;
-  font-size: xx-large;
-  position: static;
+  background-color: #020f24;
 }
 .header-caution-icon {
   width: 20px;
@@ -56,24 +51,37 @@ a:hover {
   border-style: solid;
   border-width: thin;
   padding: 5px;
-  font-size: 4vw;
+  margin-left: 1vw;
+  margin-right: 1vw;
+  font-size: 20px;
   transition: 0.1s;
+}
+.header-link-container {
+  display: flex;
+  justify-content: center;
+  font-size: xx-large;
+  padding-top: 10px;
+  padding-bottom: 8px;
 }
 .header-main-container {
   color: white;
+  display: block;
+  background-color: #020f24;
+  top: 0;
+  left: 0;
+  margin-left: -8px;
+  width: 100vw;
 }
 .header-personal-img {
-  display: flex;
   padding: 5px;
-  width: 20vw;
-  max-width: 200px;
+  width: 150px;
   border-radius: 100%;
 }
 .header-personal-name {
   display: flex;
-  width: 20vw;
+  width: 150px;
   padding: 5px;
-  font-size: 5vw;
+  font-size: 38px;
 }
 .header-top-section {
   display: flex;
@@ -89,17 +97,47 @@ a:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 10px;
-  padding: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   background-color: orange;
   color: black;
   font-weight: 700;
+  margin-top: 5px;
+  margin-left: 0px;
+}
+.is-sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  animation: stickHeader 1s;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+@keyframes stickHeader {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100;
+  }
+}
+@media screen and (max-width: 450px) {
+  .header-top-section {
+    background-color: red;
+  }
 }
 .projects-main-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-bottom: 200px;
+}
+.projects-main-title {
+  font-size: 72px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 .single-project-container {
   display: flex;
