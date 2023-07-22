@@ -1,1 +1,3 @@
 Incorporate an AI that can answer questions to the user, especially any questions about myself or what I do.
+
+Daily journal to list what I've been up to
