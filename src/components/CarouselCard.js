@@ -19,14 +19,14 @@ export default function CarouselCard() {
     )
 
     function handleCarouselLeftButton(e) {
-        e.preventDefault();
+        // e.preventDefault();
         setCarouselIdx((prevData) => {
             return  carouselIdx > 0 ? prevData - 1 : 2
         })
     }
     
     function handleCarouselRightButton(e) {
-        e.preventDefault();
+        // e.preventDefault();
         setCarouselIdx((prevData) => {
             return carouselIdx < 2 ? prevData + 1 : 0
         })
@@ -47,12 +47,12 @@ export default function CarouselCard() {
 
     return (
         <div className="gizmos-carousel-main-container">
-            <button className="gizmo-carousel-button" name="left" onClick={handleCarouselLeftButton}>Left</button>
+            <button className="gizmos-carousel-button" name="left" onClick={handleCarouselLeftButton}>Left</button>
             <div className="gizmos-carousel-card-container">
-                <div>{carouselArray[carouselIdx]}</div>
                 <img className="gizmos-single-boba-img" src={imgArray[carouselIdx]} alt="boba"/>
+                <div className="gizmos-single-boba-name">{carouselArray[carouselIdx]}</div>
             </div>
-            <button className="gizmo-carousel-button" name="right" onClick={handleCarouselRightButton}>Right</button>
+            <button className="gizmos-carousel-button" name="right" onClick={handleCarouselRightButton}>Right</button>
         </div>
     )
 }
