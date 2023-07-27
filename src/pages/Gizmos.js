@@ -8,15 +8,6 @@ export default function Gizmos() {
     const [carouselIdx, setCarouselIdx] = useState(0)
     let carouselData = gizmoData[0].data
     const [carouselArray] = useState(carouselData)
-    // let carouselArray = carouselData.map(item => {
-    //     return (
-    //         <CarouselCard 
-    //         key = {carouselData.id}
-    //         {...item}
-    //         />
-    //     )
-    // })
-    console.log(carouselArray)
 
     //Carousel
     useEffect(() => {
@@ -42,10 +33,10 @@ export default function Gizmos() {
     // }, [])
 
     return (
-        <div className="gizmos-main-container">\
-            Coming soon!
+        <div className="gizmos-main-container">
+            <div>Sample Carousel for Boba</div>
             <div className="gizmos-carousel-main-container">
-                {/* {carouselArray[carouselIdx]} */}
+                <CarouselCard />
             </div>
         </div>
     )
