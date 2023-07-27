@@ -3,13 +3,14 @@
 export default function Goals() {
     return (
         <div className="goals-main-container">
-            <h1>Goals: </h1>
-            <p>Improve my skills as a web developer, of course.</p>
-            <p>Add animations to my website.</p>
-            <p>Implement Toastify for notifications on website.</p>
-            <p>Look more into A.I.</p>
-            <p>ChatGPT: How can it help my page?</p>
-            <p>Azure: I want to give my A.I. a voice.</p>
+            Goals:
+            <div className="goals-single-goal">Improve my skills as a web developer, of course.</div>
+            <div className="goals-single-goal">Add animations to my website.</div>
+            <div className="goals-single-goal">Fill "Gizmos" section with more interaction</div>
+            <div className="goals-single-goal">Implement Toastify for notifications on website.</div>
+            <div className="goals-single-goal">Look more into A.I.</div>
+            <div className="goals-single-goal">ChatGPT: How can it help my page?</div>
+            <div className="goals-single-goal">Azure: I want to give my A.I. a voice.</div>
         </div>
     )
 }
