@@ -30,13 +30,11 @@ export default function CarouselCard() {
         setCarouselIdx((prevData) => {
             return carouselIdx < 2 ? prevData + 1 : 0
         })
-        console.log(carouselIdx)
     }
 
     useEffect(() => {
         let slider = setInterval(() => {
             setCarouselIdx((prevData) => {
-                console.log(prevData)
                 return  prevData < 2 ? prevData + 1 : 0
             })
         }, 5000)
