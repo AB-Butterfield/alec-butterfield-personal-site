@@ -34,7 +34,7 @@ export default function Gizmos() {
 
     return (
         <div className="gizmos-main-container">
-            <div>Sample Carousel for Boba</div>
+            <div className="gizmos-single-name">Sample Carousel for Boba</div>
             <div className="gizmos-carousel-main-container">
                 <CarouselCard />
             </div>
