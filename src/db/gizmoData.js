@@ -25,37 +25,37 @@ export const gizmoData = [
     data: [
             {
                 id: 1,
-                name: "toonup",
-                gags: ["feather", "megaphone", "lipstick", "cane", "fairy-dust", "ladder"]
+                name: "Toonup",
+                gags: ["feather", "megaphone", "lipstick", "cane", "juggle", "fairy-dust", "ladder"]
             },
             {
                 id: 2,
-                name: "trap",
+                name: "Trap",
                 gags: ["banana-peel", "rake", "marbles", "quicksand", "trap-door", "dynamite", "train"]
             },
             {
                 id: 3,
-                name: "lure",
+                name: "Lure",
                 gags: ["one-dollar", "small-magnet", "five-dollar", "big-magnet", "ten-dollar", "goggles", "presentation"]
             },
             {
                 id: 4,
-                name: "sound",
+                name: "Sound",
                 gags: ["bike-horn", "whistle", "trumpet", "aoogah", "trunk", "foghorn", "opera"]
             },
             {
                 id: 5,
-                name: "throw",
+                name: "Throw",
                 gags: ["cupcake", "blueberry-slice", "cream-slice", "blueberry-pie", "cream-pie", "birthday-cake", "wedding-cake"]
             },
             {
                 id: 6,
-                name: "squirt",
+                name: "Squirt",
                 gags: ["flower", "glass-of-water", "squirt-gun", "seltzer", "fire-hose", "rain-cloud", "geyser"]
             },
             {
                 id: 7,
-                name: "drop",
+                name: "Drop",
                 gags: ["flower-pot", "sandbag", "anvil", "big-weight", "safe", "piano", "toontanic"]
             }
         ]

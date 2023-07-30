@@ -1,5 +1,16 @@
+//Boba variables
 @bobaBackgroundColor: rgba(206, 148, 248, 0.719);
 @bobaFontColor: rgba(255, 247, 131, 0.878);
+
+//Toontown variables
+@toonupColor: rgb(187, 104, 232);
+@trapColor: rgb(241, 247, 61);
+@lureColor:  rgb(30, 139, 45);
+@soundColor: rgb(61, 70, 202);
+@throwColor: rgb(215, 128, 56);
+@squirtColor: rgb(199, 39, 122);
+@dropColor: rgb(48, 227, 255);
+@gagBackground: rgb(26, 97, 184);
 
 .gizmos-carousel-button {
     size: large;
@@ -13,6 +24,12 @@
     border-radius: 10px;
     overflow: hidden;
 }
+
+// .gizmo-carousel-button {
+//     display: flex;
+//     justify-content: center;
+//     height: 25px;
+// }
 
 .gizmos-carousel-card-container {
     display:flex;
@@ -31,7 +48,7 @@
     display:flex;
     justify-content: center;
     align-items: center;
-    border-style:dotted;
+    border-style:solid;
     border-color:white;
     border-radius: 10px;
     // height: 25vw;
@@ -41,10 +58,10 @@
     // border-style:dotted;
     // padding: 5px;
     // margin-top: 5px;
-    // margin-bottom: 5px;
+    // margin-bottom: 25px;
     // border-color:white;
     // border-radius: 10px;
-    overflow: hidden;
+    // overflow: hidden;
 }
 
 .gizmos-carousel-single-item {
@@ -62,7 +79,7 @@
     align-items: center;
     flex-direction: column;
     font-size:62px;
-    height: 150vh;
+    // height: 150vh;
     max-width: 95vw;
 }
 
@@ -79,6 +96,12 @@
 .gizmos-single-name {
     font-size: 36px;
 }
+.gizmos-toontown-container {
+    display:flex;
+    justify-content: center;
+    flex-direction:column;
+    align-items: center;
+}
 
 .gizmos-toontown-main {
     display: flex;
@@ -88,14 +111,63 @@
     border-style: dotted;
     border-radius: 10px;
     margin-top: 72px;
+    margin-bottom: 100px;
     font-size: 36px;
 }
 
-.gizmo-carousel-button {
+.gizmos-toontown-gag-items {
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.gizmos-toontown-gag-name {
+    width: 100px;
+}
+
+.gizmos-toontown-gag-track {
     display: flex;
     justify-content: center;
-    height: 25px;
+    align-items: center;
+    font-size: 24px;
+}   .Toonup{
+    background-color: @toonupColor;
+}   .Trap{
+    background-color: @trapColor;
+}   .Lure{
+    background-color: @lureColor;
+}   .Sound{
+    background-color: @soundColor;
+}   .Throw{
+    background-color: @throwColor;
+}   .Squirt{
+    background-color: @squirtColor;
+}   .Drop{
+    background-color: @dropColor;
 }
+
+.gizmos-toontown-single-gag {
+    font-size: 12px;
+    padding: 5px;
+    margin: 5px;
+    width: 50px;
+    height: 25px;
+    border-radius:7px;
+    // border-style: dashed;
+    user-select: none;
+    background-color: @gagBackground;
+}   .gag-clicked {
+    background-color: black;
+}   .blue {
+    background-color: blue;
+}
+
+.gizmos-toontown-single-gag:hover {
+    background-color: yellow;
+    transition: 0.1s;
+}
+
+
 
 @keyframes slideRight {
     0% {

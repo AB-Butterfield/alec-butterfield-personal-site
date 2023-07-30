@@ -10,25 +10,8 @@ export default function Gizmos() {
     let carouselData = gizmoData[0].data
     const [carouselArray] = useState(carouselData)
 
-    let toontownGagTracks = [
-        gizmoData[1].data[0],
-        gizmoData[1].data[1],
-        gizmoData[1].data[2],
-        gizmoData[1].data[3],
-        gizmoData[1].data[4],
-        gizmoData[1].data[5],
-        gizmoData[1].data[6]
-    ]
-
-    const toontownGags = toontownGagTracks.map( item => {
-        return (
-            <ToontownGagCard 
-            {...item}
-            />
-        )
-    })
-
-    console.log("toontownGags: ",toontownGags)
+    const toontownGags = gizmoData[1].data
+    const [gagClicked, setGagClicked] = useState(0)
 
     //Carousel
     useEffect(() => {
@@ -62,7 +45,10 @@ export default function Gizmos() {
                 <CarouselCard />
             </div>
             <div className="gizmos-toontown-main">
-                <Toontown />
+                <Toontown 
+                data = {toontownGags}
+                isGagClicked = {gagClicked === false}
+                />
             </div>
         </div>
     )
