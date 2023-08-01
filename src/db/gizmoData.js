@@ -26,7 +26,7 @@ export const gizmoData = [
             {
                 id: 1,
                 name: "Toonup",
-                gags: ["feather", "megaphone", "lipstick", "cane", "juggle", "fairy-dust", "ladder"]
+                gags: ["feather", "megaphone", "lipstick", "cane", "fairy-dust", "juggle", "ladder"]
             },
             {
                 id: 2,

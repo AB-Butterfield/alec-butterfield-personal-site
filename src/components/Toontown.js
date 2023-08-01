@@ -17,9 +17,8 @@ export default function Toontown(props) {
 
     return (
         <div className="gizmos-toontown-container">
-            Toontown Battle Simulator
             <div className="gizmos-toontown-cog-container">
-
+            Cogs go here
             </div>
             <div className="gizmos-all-gags-container">
                 <div>
@@ -27,7 +26,7 @@ export default function Toontown(props) {
                 </div>
             </div>
             <div className="gizmos-toons-container">
-
+            Toons go here
             </div>
         </div>
     )

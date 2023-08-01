@@ -45,6 +45,7 @@ export default function Gizmos() {
                 <CarouselCard />
             </div>
             <div className="gizmos-toontown-main">
+                Toontown Battle Simulator
                 <Toontown 
                 data = {toontownGags}
                 isGagClicked = {gagClicked === false}
