@@ -2,22 +2,26 @@ import React, { useState } from "react";
 import ToontownSingleGag from "./ToontownSingleGag";
 
 export default function ToontownGagCard(props) {
+    let gags = props.item.gags
+    let tracks = props.item.name
 
-    const gagTrackGags = props.item.gags.map((gag) => {
+    const gagTrackTest = gags.map((gag) => {
         return (
-            < ToontownSingleGag
-                gag = {gag}
+            <ToontownSingleGag 
+                gagName = {gag.gagName}
+                gagValue = {gag.value}
+                gagTarget = {gag.target}
             />
         )
     })
 
     return (
-        <div className={`gizmos-toontown-gag-track ${props.item.name}`} >
+        <div className={`gizmos-toontown-gag-track ${tracks}`} >
             <div className="gizmos-toontown-gag-name">
-                {props.item.name}
+                {tracks}
             </div>
             <div className="gizmos-toontown-gag-items">
-                {gagTrackGags}
+                {gagTrackTest}
             </div>
         </div>
     )
