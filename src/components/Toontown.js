@@ -1,16 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { gizmoData } from "../db/gizmoData";
 import ToontownGagCard from "./ToontownGagCard";
 
 export default function Toontown(props) { 
-    console.log("Toontown Props: ",props.isGagClicked)
+    const [currentGag, setCurrentGag] = useState("")
+    const [currentTrack, setCurrentTrack] = useState("")
+    const [currentValue, setCurrentValue] = useState(0)
+
+    console.log("Track: ", currentTrack)
+    console.log("Gag: ", currentGag)
+    console.log("Damage: ", currentValue)
+
     const toontownGags = props.data.map( item => {
+
         return (
             <ToontownGagCard
             key = {item.id}
             track = {item.name}
             item = {item}
-            isGagClicked = {props.isGagClicked}
+            isGagSelected = {(gag) => (setCurrentGag(gag))}
+            isTrackSelected = {() => (setCurrentTrack(item.name))}
+            isGagValue = {(value) => (setCurrentValue(value))}
             />
         )
     })
@@ -26,7 +36,11 @@ export default function Toontown(props) {
                 </div>
             </div>
             <div className="gizmos-toons-container">
-            Toons go here
+            
+                <div>
+                {currentGag}
+                </div>
+                Toons go here 
             </div>
         </div>
     )

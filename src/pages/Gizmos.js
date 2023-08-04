@@ -48,7 +48,6 @@ export default function Gizmos() {
                 Toontown Battle Simulator
                 <Toontown 
                 data = {toontownGags}
-                isGagClicked = {gagClicked === false}
                 />
             </div>
         </div>
