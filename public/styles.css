@@ -149,6 +149,10 @@
 .gizmos-single-name {
   font-size: 36px;
 }
+.gizmos-toontown-cog-container {
+  display: flex;
+  margin: 5px;
+}
 .gizmos-toontown-container {
   display: flex;
   justify-content: center;
@@ -202,6 +206,10 @@
 }
 .Drop {
   background-color: #30e3ff;
+}
+.gizmos-toontown-single-cog {
+  margin: 10px;
+  font-size: 20px;
 }
 .gizmos-toontown-single-gag {
   font-size: 12px;

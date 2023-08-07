@@ -4,6 +4,8 @@ export default function ToontownSingleToon(props) {
     
     const {gagName, gagValue, cogTarget, toonId} = props.toon
 
+    console.log("propsToonId: ", props.currentToon)
+    // const isMyTurn = props.currentToon = toonId ? toonId : "not-my-turn"
     // useEffect(() => {
     //     console.log('Updating info...')
     // })
@@ -15,14 +17,14 @@ export default function ToontownSingleToon(props) {
 
     return (
         <div 
-            className={`gizmos-toontown-single-toon toon${toonId}`}
+            className={`gizmos-toontown-single-toon toon${0}`}
             onClick={handleClick}
             >
 
             <div className={`gizmos-toontown-single-toon-gag`}>
                 <p>Toon Gag: {gagName}</p>
             </div>
-            Toon #{toonId}
+            Toon #{toonId + 1}
         </div>
     )
 }
