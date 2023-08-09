@@ -100,7 +100,6 @@ export default function Toontown(props) {
     })
 
     function handleGagLockIn(e) {
-        console.log('Gaglock.e: ', e)
         setCurrentRoundToonGags((prevData) => {
             prevData[currentToon].gagName = currentGag
             prevData[currentToon].gagValue = currentValue
@@ -114,6 +113,13 @@ export default function Toontown(props) {
     }
 
     function handlePassTurn() {
+        //What to handle when passing turn:
+        //Set cogs as Trapped, set cogs as Lured
+        //Un-lure cogs and deal additional damage if not sound
+        //Drop checks if lured, does 0 if lured
+        //All toon's gags are divided by type, same-types are added together
+        //Save new object for total damage
+        //Clear currentToonGagRound for next round
         for (let toon in currentRoundToonGags) {
             let currentToon = currentRoundToonGags[toon]
 
