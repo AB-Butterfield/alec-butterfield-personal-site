@@ -61,7 +61,7 @@
   left: 0;
   bottom: 0;
   right: 0;
-  height: 7vh;
+  height: 50px;
   width: 98vw;
   padding-top: 5px;
   padding-bottom: 5px;
@@ -279,9 +279,10 @@ body {
 }
 .home-main-container {
   display: flex;
-  justify-content: center;
+  justify-content: top;
   flex-direction: column;
   min-width: 350px;
+  padding-bottom: 50px;
 }
 .home-who-am-I-container {
   display: flex;
@@ -296,7 +297,6 @@ body {
   justify-content: center;
   padding-left: 5%;
   padding-right: 5%;
-  padding-bottom: 70px;
 }
 .what-do-I-do {
   font-size: 48px;
