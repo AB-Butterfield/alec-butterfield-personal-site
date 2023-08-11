@@ -4,7 +4,6 @@ export default function ToontownSingleToon(props) {
     
     const {gagName, gagValue, cogTarget, toonId} = props.toon
 
-    console.log("propsToonId: ", props.currentToon)
     // const isMyTurn = props.currentToon = toonId ? toonId : "not-my-turn"
     // useEffect(() => {
     //     console.log('Updating info...')

@@ -14,7 +14,8 @@ export default function Toontown(props) {
         {
             cogId: 0,
             cogLevel: 1,
-            cogHP: 25
+            cogHP: 25,
+            cogTargettedGags: []
         },
         {
             cogId: 1,
@@ -90,7 +91,6 @@ export default function Toontown(props) {
     })
 
     let toontownCogs = cogList.map(cog => {
-        let cogInfo = cogList
  
         return (
             <ToontownSingleCog 
@@ -113,6 +113,7 @@ export default function Toontown(props) {
     }
 
     function handlePassTurn() {
+        
         //What to handle when passing turn:
         //Set cogs as Trapped, set cogs as Lured
         //Un-lure cogs and deal additional damage if not sound
