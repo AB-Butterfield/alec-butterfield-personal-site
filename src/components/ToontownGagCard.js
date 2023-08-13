@@ -16,6 +16,7 @@ export default function ToontownGagCard(props) {
                 isGagSelected = {props.isGagSelected}
                 isTrackSelected = {props.isTrackSelected}
                 isGagValue = {props.isGagValue}
+                isCurrentTarget = {props.isCurrentTarget}
             />
         )
     })
