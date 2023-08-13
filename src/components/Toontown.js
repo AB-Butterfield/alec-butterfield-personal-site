@@ -129,7 +129,7 @@ export default function Toontown(props) {
         //All toon's gags are divided by type, same-types are added together
         //Save new object for total damage
         //Clear currentToonGagRound for next round
-        let cogMultiplyerValue = [
+        let cogMultiplierValue = [
             {
                 cogId: 0,
                 luredMultiplier: 1,
@@ -187,32 +187,34 @@ export default function Toontown(props) {
         //Set the Multiplier variable for each cog
         for (let toon in currentRoundToonGags) {
             let currentToon = currentRoundToonGags[toon]
+            console.log("Current toon: ", currentToon)
             
-            if (currentToon.cogTarget === 'all' && toon.gagTrack !== "lure" && toon.gagTrack !== "toonup") {
-                
-                for (let cog in cogMultiplyerValue) {
-                    let gagMultiplier = cogMultiplyerValue[cog].gagMultipliers[toon.gagTrack]
+            if (currentToon.cogTarget === 5 && currentToon.gagTrack !== "lure" && currentToon.gagTrack !== "toonup") {
+                console.log("Targetting all...")
+                for (let cog in cogMultiplierValue) {
 
-                    if (gagMultiplier === 1) {
-                        gagMultiplier = 1.2
-                    }
+                    let gagMultiplier = cogMultiplierValue[cog].gagMultipliers.throw
+                    console.log('gagMultiplier: ', gagMultiplier)
                     if (gagMultiplier === 0) {
-                        gagMultiplier = 1
+                        console.log("Changing multiplier")
+                        cogMultiplierValue[cog].gagMultipliers[currentToon.gagTrack] = 1
+                    }
+                     if (gagMultiplier === 1) {
+                        cogMultiplierValue[cog].gagMultipliers[currentToon.gagTrack] = 1.2
                     }
                 }
             }
 
-            if (toon.cogTarget !== 'all') {
-                console.log("Multiplier to change: ", cogMultiplyerValue[currentToon.cogTarget].gagMultipliers)
+            if (currentToon.cogTarget !== 5) {
                 let currentTrack = currentToon.gagTrack
-                console.log("current track: ", currentTrack)
-                let changingMultiplier = cogMultiplyerValue[currentToon.cogTarget].gagMultipliers.currentTrack
-                console.log("changingMultiplier: ", changingMultiplier)
+
+                let changingMultiplier = cogMultiplierValue[currentToon.cogTarget].gagMultipliers[currentTrack]
+
                 if (changingMultiplier === 0) {
-                    cogMultiplyerValue[currentToon.cogTarget].gagMultipliers.currentTrack = 1
+                    cogMultiplierValue[currentToon.cogTarget].gagMultipliers[currentTrack] = 1
                 }
                 if (changingMultiplier === 1) {
-                    changingMultiplier = 1.2
+                    cogMultiplierValue[currentToon.cogTarget].gagMultipliers[currentTrack] = 1
                 }
                 
             }
@@ -221,7 +223,7 @@ export default function Toontown(props) {
 
         }
         // cogMultiplyerValue[0].gagMultipliers.throw = 1
-        console.log("Multiplier Value: ", cogMultiplyerValue)
+        console.log("Multiplier Value: ", cogMultiplierValue)
 
         //Resolve damage
         for (let toon in currentRoundToonGags) {
@@ -241,11 +243,18 @@ export default function Toontown(props) {
         console.log(currentRoundToonGags)
     }
 
+    function handleSelectAll() {
+        setCurrentTarget((prevData) => {
+            return 5
+        })
+    }
+
     return (
         <div className="gizmos-toontown-container">
             <div className="gizmos-toontown-cog-container">
                 {toontownCogs}
             </div>
+            <button onClick={handleSelectAll}> Target All Cogs</button>
             <div className="gizmos-all-gags-container">
                 <div>
                 {toontownGags}
