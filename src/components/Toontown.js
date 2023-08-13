@@ -39,28 +39,28 @@ export default function Toontown(props) {
         {
             toonId: 0,
             gagName:"gag-1",
-            gagTrack:"track-1",
+            gagTrack:"throw",
             gagValue:0,
             cogTarget:0
         }, 
         {
             toonId: 1,
             gagName:"gag-2",
-            gagTrack:"track-2",
+            gagTrack:"throw",
             gagValue:0,
             cogTarget:1
         }, 
         {
             toonId: 2,
             gagName:"gag-3",
-            gagTrack:"track-3",
+            gagTrack:"throw",
             gagValue:0,
             cogTarget:2
         }, 
         {
             toonId: 3,
             gagName:"gag-4",
-            gagTrack:"track-4",
+            gagTrack:"throw",
             gagValue:0,
             cogTarget:3
         }
@@ -100,6 +100,7 @@ export default function Toontown(props) {
         return (
             <ToontownSingleCog 
                 cog = {cog}
+                isCurrentTarget = {(cog) => (setCurrentTarget(cog))}
             />
         )
     })
@@ -109,6 +110,7 @@ export default function Toontown(props) {
             prevData[currentToon].gagName = currentGag
             prevData[currentToon].gagValue = currentValue
             prevData[currentToon].cogTarget = currentTarget
+            console.log("Prev data: ",prevData)
             return (prevData)
         })
 
@@ -201,14 +203,27 @@ export default function Toontown(props) {
             }
 
             if (toon.cogTarget !== 'all') {
-          
+                console.log("Multiplier to change: ", cogMultiplyerValue[currentToon.cogTarget].gagMultipliers)
+                let currentTrack = currentToon.gagTrack
+                console.log("current track: ", currentTrack)
+                let changingMultiplier = cogMultiplyerValue[currentToon.cogTarget].gagMultipliers.currentTrack
+                console.log("changingMultiplier: ", changingMultiplier)
+                if (changingMultiplier === 0) {
+                    cogMultiplyerValue[currentToon.cogTarget].gagMultipliers.currentTrack = 1
+                }
+                if (changingMultiplier === 1) {
+                    changingMultiplier = 1.2
+                }
                 
             }
-            console.log("Multiplier to change: ", cogMultiplyerValue[currentToon.cogTarget])
+            
             // cogMultiplyerValue[currentRoundToonGags[toon].cogTarget] === 1 ? 1.2 : 1
 
         }
+        // cogMultiplyerValue[0].gagMultipliers.throw = 1
         console.log("Multiplier Value: ", cogMultiplyerValue)
+
+        //Resolve damage
         for (let toon in currentRoundToonGags) {
             let currentToon = currentRoundToonGags[toon]
 
