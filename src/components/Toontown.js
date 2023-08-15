@@ -16,7 +16,6 @@ export default function Toontown(props) {
             cogId: 0,
             cogLevel: 1,
             cogHP: 25,
-            cogTargettedGags: []
         },
         {
             cogId: 1,
@@ -39,28 +38,28 @@ export default function Toontown(props) {
         {
             toonId: 0,
             gagName:"gag-1",
-            gagTrack:"throw",
+            gagTrack:"track-1",
             gagValue:0,
             cogTarget:0
         }, 
         {
             toonId: 1,
             gagName:"gag-2",
-            gagTrack:"throw",
+            gagTrack:"track-2",
             gagValue:0,
             cogTarget:1
         }, 
         {
             toonId: 2,
             gagName:"gag-3",
-            gagTrack:"throw",
+            gagTrack:"track-3",
             gagValue:0,
             cogTarget:2
         }, 
         {
             toonId: 3,
             gagName:"gag-4",
-            gagTrack:"throw",
+            gagTrack:"track-4",
             gagValue:0,
             cogTarget:3
         }
@@ -74,8 +73,9 @@ export default function Toontown(props) {
             track = {item.name}
             item = {item}
             currentToon = {currentToon}
+            currentGag = {currentGag}
             isGagSelected = {(gag) => (setCurrentGag(gag))}
-            isTrackSelected = {() => (setCurrentTrack(item.name))}
+            isTrackSelected = {(track) => (setCurrentTrack(track))}
             isGagValue = {(value) => (setCurrentValue(value))}
             isCurrentTarget = {(target) => (setCurrentTarget(target))}
             />
@@ -95,25 +95,37 @@ export default function Toontown(props) {
         )
     })
 
+    //List Cog information at top
     let toontownCogs = cogList.map(cog => {
- 
         return (
             <ToontownSingleCog 
                 cog = {cog}
                 isCurrentTarget = {(cog) => (setCurrentTarget(cog))}
+                currentToon = {currentToon}
+                lockInGag = {() => {setCurrentRoundToonGags((prevData) => {
+                    prevData[currentToon].gagName = currentGag
+                    prevData[currentToon].gagValue = currentValue
+                    prevData[currentToon].cogTarget = currentTarget
+                    prevData[currentToon].gagTrack = currentTrack
+                })
+            }}
             />
         )
     })
 
     function handleGagLockIn(e) {
+        let cogTarget = e.target.id
+        console.log("currentGag", currentGag)
+
         setCurrentRoundToonGags((prevData) => {
             prevData[currentToon].gagName = currentGag
             prevData[currentToon].gagValue = currentValue
-            prevData[currentToon].cogTarget = currentTarget
+            prevData[currentToon].cogTarget = cogTarget
+            prevData[currentToon].gagTrack = currentTrack
             console.log("Prev data: ",prevData)
             return (prevData)
         })
-
+            
         setCurrentToon((prevData) => {
             return (prevData + 1 < numberOfToons ? prevData + 1 : 0)
         })
@@ -133,6 +145,7 @@ export default function Toontown(props) {
             {
                 cogId: 0,
                 luredMultiplier: 1,
+                damageToTake: 0,
                 gagMultipliers: {
                     toonup: 0,
                     trap: 0,
@@ -146,6 +159,7 @@ export default function Toontown(props) {
             {
                 cogId: 1,
                 luredMultiplier: 1,
+                damageToTake: 0,
                 gagMultipliers: {
                     toonup: 0,
                     trap: 0,
@@ -159,6 +173,7 @@ export default function Toontown(props) {
             {
                 cogId: 2,
                 luredMultiplier: 1,
+                damageToTake: 0,
                 gagMultipliers: {
                     toonup: 0,
                     trap: 0,
@@ -172,6 +187,7 @@ export default function Toontown(props) {
             {
                 cogId: 3,
                 luredMultiplier: 1,
+                damageToTake: 0,
                 gagMultipliers: {
                     toonup: 0,
                     trap: 0,
@@ -187,72 +203,177 @@ export default function Toontown(props) {
         //Set the Multiplier variable for each cog
         for (let toon in currentRoundToonGags) {
             let currentToon = currentRoundToonGags[toon]
-            console.log("Current toon: ", currentToon)
-            
-            if (currentToon.cogTarget === 5 && currentToon.gagTrack !== "lure" && currentToon.gagTrack !== "toonup") {
-                console.log("Targetting all...")
-                for (let cog in cogMultiplierValue) {
-
-                    let gagMultiplier = cogMultiplierValue[cog].gagMultipliers.throw
-                    console.log('gagMultiplier: ', gagMultiplier)
-                    if (gagMultiplier === 0) {
-                        console.log("Changing multiplier")
-                        cogMultiplierValue[cog].gagMultipliers[currentToon.gagTrack] = 1
+           
+            //If targetting all
+            if (currentToon.cogTarget > cogList.length - 1) {
+    
+                if (currentToon.gagTrack === 'lure') {
+                    for (let cog in cogMultiplierValue) {
+                        cogMultiplierValue[cog].luredMultiplier = 1.5
                     }
-                     if (gagMultiplier === 1) {
-                        cogMultiplierValue[cog].gagMultipliers[currentToon.gagTrack] = 1.2
+                }
+
+                else if (currentToon.gagTrack !== "toonup"){
+                    for (let cog in cogMultiplierValue) {
+
+                        let gagMultiplier = cogMultiplierValue[cog].gagMultipliers.throw
+                        
+                        if (gagMultiplier === 0) {
+                            
+                            cogMultiplierValue[cog].gagMultipliers[currentToon.gagTrack] = 1
+                        }
+                         if (gagMultiplier === 1) {
+                            cogMultiplierValue[cog].gagMultipliers[currentToon.gagTrack] = 1.2
+                        }
                     }
                 }
             }
 
-            if (currentToon.cogTarget !== 5) {
+            //If targetting one
+            if (currentToon.cogTarget <= cogList.length) {
                 let currentTrack = currentToon.gagTrack
 
-                let changingMultiplier = cogMultiplierValue[currentToon.cogTarget].gagMultipliers[currentTrack]
-
-                if (changingMultiplier === 0) {
-                    cogMultiplierValue[currentToon.cogTarget].gagMultipliers[currentTrack] = 1
-                }
-                if (changingMultiplier === 1) {
-                    cogMultiplierValue[currentToon.cogTarget].gagMultipliers[currentTrack] = 1
-                }
-                
+                if (currentTrack === 'lure') {
+                    cogMultiplierValue[currentToon.cogTarget].luredMultiplier = 1.5
+                } else {
+                    let changingMultiplier = cogMultiplierValue[currentToon.cogTarget].gagMultipliers[currentTrack]
+                    if (changingMultiplier === 0) {
+                        cogMultiplierValue[currentToon.cogTarget].gagMultipliers[currentTrack] = 1
+                    }
+                    if (changingMultiplier === 1) {
+                        cogMultiplierValue[currentToon.cogTarget].gagMultipliers[currentTrack] = 1
+                    }
+                }  
             }
-            
-            // cogMultiplyerValue[currentRoundToonGags[toon].cogTarget] === 1 ? 1.2 : 1
-
         }
-        // cogMultiplyerValue[0].gagMultipliers.throw = 1
         console.log("Multiplier Value: ", cogMultiplierValue)
 
-        //Resolve damage
-        for (let toon in currentRoundToonGags) {
-            let currentToon = currentRoundToonGags[toon]
-
-
+            //Resolve damage
             setCogList((prevData) => {
-                // prevData[currentToon.cogTarget].cogHP -= currentToon.gagValue
+                for (let toon in currentRoundToonGags) {
+                    let currentToon = currentRoundToonGags[toon]
+                    let cogTarget = currentToon.cogTarget
+                    let currentCog = prevData[cogTarget]
+
+                    let currentTrackMultiplier = cogMultiplierValue[cogTarget].gagMultipliers[currentToon.gagTrack]
+                    let currentLureMultiplier = cogMultiplierValue[cogTarget].luredMultiplier
+                    
+                    console.log('currentCog:', currentCog)
+                    //Targetting all
+                    if (currentToon.cogTarget > cogList.length) {
+                        console.log("Still working on targetting all, sorry...")
+                        
+                    }
+                    //Targetting one
+                    else if (currentToon.cogTarget <= cogList.length) {
+                        //Track is toonup
+                        if (currentToon.gagTrack === 'toonup') {
+
+                        }
+                        //Track is trap
+                        if (currentToon.gagTrack === 'trap') {
+                            if (cogMultiplierValue[prevData.cogTarget].luredMultiplier !== 1.5) {
+                                currentCog.cogHP -= (currentToon.gagValue)
+                            }
+                        }
+
+                        //Track is lure
+
+                        //Track is sound
+                        if (currentToon.gagTrack === 'sound') {
+                            currentCog.cogHP -= (currentToon.gagValue)
+                        }
+                        //Track is Throw or Squirt
+                        if (currentToon.gagTrack === 'throw' || currentToon.gagTrack === 'squirt') {
+                            console.log('currentLureMultiplier: ', currentLureMultiplier)
+                            currentCog.cogHP -= (currentToon.gagValue * currentTrackMultiplier * currentLureMultiplier)
+                        }
+                        //Track is drop
+                        if (currentToon.gagTrack === 'drop') {
+                            if (cogMultiplierValue[currentCog].luredMultiplier !== 1.5) {
+                                currentCog.cogHP -= (currentToon.gagValue * currentTrackMultiplier)
+                            }
+                        }
+                    }
+                }
+                console.log("prevData: ",prevData)
                 return (prevData)
             })
+            setCurrentRoundToonGags(() => {
+                return (
+                    [
+                        {
+                            toonId: 0,
+                            gagName:"gag-1",
+                            gagTrack:"track-1",
+                            gagValue:0,
+                            cogTarget:0
+                        }, 
+                        {
+                            toonId: 1,
+                            gagName:"gag-2",
+                            gagTrack:"track-2",
+                            gagValue:0,
+                            cogTarget:1
+                        }, 
+                        {
+                            toonId: 2,
+                            gagName:"gag-3",
+                            gagTrack:"track-3",
+                            gagValue:0,
+                            cogTarget:2
+                        }, 
+                        {
+                            toonId: 3,
+                            gagName:"gag-4",
+                            gagTrack:"track-4",
+                            gagValue:0,
+                            cogTarget:3
+                        }
+                    ]
+                )
+            })
+            setCurrentGag(() => "")
+            setCurrentTrack(() => "")
+            setCurrentValue(() => 0)
+            setCurrentToon(() => 0)
+            setCurrentTarget(() => 0)
         }
-
-
-    }
-
+        
     function handleCheckGagRound() {
         console.log(currentRoundToonGags)
     }
 
     function handleSelectAll() {
-        setCurrentTarget((prevData) => {
+        setCurrentTarget(() => {
             return 5
         })
     }
+    useEffect(() => {
+        console.log('Updating info...')
+    })
+
+    let cogLockInButtons = cogList.map((cog) => {
+        return(
+            <button 
+            className="gizmos-toontown-cog-lock-btn"
+            id={cog.cogId}
+            onClick={handleGagLockIn}
+            >Select Cog
+            </button>
+        )
+
+    })
+        
+    
 
     return (
         <div className="gizmos-toontown-container">
             <div className="gizmos-toontown-cog-container">
                 {toontownCogs}
+            </div>
+            <div className="gizmos-toontown-cog-lock-in">
+                {cogLockInButtons}
             </div>
             <button onClick={handleSelectAll}> Target All Cogs</button>
             <div className="gizmos-all-gags-container">
@@ -261,9 +382,7 @@ export default function Toontown(props) {
                 </div>
             </div>
             Current Toon: {currentToon + 1}
-            {currentGag}
-            {currentValue}
-            <button onClick={handleGagLockIn}>Lock in Gag</button>
+            {/* <button onClick={handleGagLockIn}>Lock in Gag</button> */}
             <button onClick={handlePassTurn}>Pass turn</button>
             <button onClick={handleCheckGagRound}>Check Gag Round</button>
             <div className="gizmos-toontown-toons-container">

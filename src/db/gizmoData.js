@@ -202,7 +202,7 @@ export const gizmoData = [
                         target: "one"
                     },
                     {
-                        gagName: "cream-pie",
+                        gagName: "cream-pie-slice",
                         value: 17,
                         target: "one"
                     },

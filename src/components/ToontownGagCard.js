@@ -3,9 +3,7 @@ import ToontownSingleGag from "./ToontownSingleGag";
 
 export default function ToontownGagCard(props) {
     let gags = props.item.gags
-    let tracks = props.item.name
-
-    // console.log("ToontownGagCard Props: ", props)
+    let track = props.item.name
 
     const gagTrackTest = gags.map((gag) => {
         return (
@@ -13,6 +11,8 @@ export default function ToontownGagCard(props) {
                 gagName = {gag.gagName}
                 gagValue = {gag.value}
                 gagTarget = {gag.target}
+                gagTrack = {track}
+                currentGag = {props.currentGag}
                 isGagSelected = {props.isGagSelected}
                 isTrackSelected = {props.isTrackSelected}
                 isGagValue = {props.isGagValue}
@@ -22,9 +22,9 @@ export default function ToontownGagCard(props) {
     })
 
     return (
-        <div className={`gizmos-toontown-gag-track ${tracks}`} >
+        <div className={`gizmos-toontown-gag-track ${track}`} >
             <div className="gizmos-toontown-gag-name">
-                {tracks}
+                {track}
             </div>
             <div className="gizmos-toontown-gag-items">
                 {gagTrackTest}

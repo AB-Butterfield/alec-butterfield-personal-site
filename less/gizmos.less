@@ -11,6 +11,7 @@
 @squirtColor: rgb(199, 39, 122);
 @dropColor: rgb(48, 227, 255);
 @gagBackground: rgb(26, 97, 184);
+@gagSelectedBackground: rgb(133, 188, 255);
 
 .gizmos-carousel-button {
     size: large;
@@ -102,6 +103,17 @@
     margin: 5px;
 }
 
+.gizmos-toontown-cog-lock-btn {
+    margin-left: 5vw;
+    margin-right: 5vw;
+    width: 100px;
+    margin-bottom: 25px;
+}
+
+.gizmos-toontown-cog-lock-in {
+   display: flex;
+}
+
 .gizmos-toontown-container {
     display:flex;
     justify-content: center;
@@ -157,8 +169,12 @@
 }
 
 .gizmos-toontown-single-cog {
-    margin: 10px;
+    display: flex;
+    flex-direction: column;
     font-size: 20px;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    width: 100px;
 }
 
 .gizmos-toontown-single-gag {
@@ -173,10 +189,8 @@
     user-select: none;
     background-color: @gagBackground;
 }   .gag-clicked {
-    background-color: black;
-}   .blue {
-    background-color: blue;
-}
+    background-color: @gagSelectedBackground;
+} 
 
 .gizmos-toontown-single-gag:hover {
     background-color: rgb(70, 244, 247);

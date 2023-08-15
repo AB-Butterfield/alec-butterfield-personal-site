@@ -21,7 +21,7 @@ export default function ToontownSingleToon(props) {
             >
 
             <div className={`gizmos-toontown-single-toon-gag`}>
-                <p>Toon Gag: {gagName}</p>
+                <p>Gag: {gagName}</p>
             </div>
             Toon #{toonId + 1}
         </div>
