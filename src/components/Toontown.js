@@ -114,18 +114,29 @@ export default function Toontown(props) {
     })
 
     function handleGagLockIn(e) {
-        let cogTarget = e.target.id
-        console.log("currentGag", currentGag)
+        if (currentTarget === "all") {
+            setCurrentRoundToonGags((prevData) => {
+                prevData[currentToon].gagName = currentGag
+                prevData[currentToon].gagValue = currentValue
+                prevData[currentToon].cogTarget = 5
+                prevData[currentToon].gagTrack = currentTrack
+                return (prevData)
+            })
+        }
+        else if (currentTarget === "one") {
+            let cogTarget = e.target.id
+            setCurrentRoundToonGags((prevData) => {
+                prevData[currentToon].gagName = currentGag
+                prevData[currentToon].gagValue = currentValue
+                prevData[currentToon].cogTarget = cogTarget
+                prevData[currentToon].gagTrack = currentTrack
+                return (prevData)
+            })
+        }
+        
+        setCurrentGag("")       
+        setCurrentValue(0)     
 
-        setCurrentRoundToonGags((prevData) => {
-            prevData[currentToon].gagName = currentGag
-            prevData[currentToon].gagValue = currentValue
-            prevData[currentToon].cogTarget = cogTarget
-            prevData[currentToon].gagTrack = currentTrack
-            console.log("Prev data: ",prevData)
-            return (prevData)
-        })
-            
         setCurrentToon((prevData) => {
             return (prevData + 1 < numberOfToons ? prevData + 1 : 0)
         })
@@ -205,27 +216,58 @@ export default function Toontown(props) {
             let currentToon = currentRoundToonGags[toon]
            
             //If targetting all
-            if (currentToon.cogTarget > cogList.length - 1) {
-    
-                if (currentToon.gagTrack === 'lure') {
-                    for (let cog in cogMultiplierValue) {
-                        cogMultiplierValue[cog].luredMultiplier = 1.5
-                    }
-                }
+            if (currentToon.cogTarget === 5) {
 
-                else if (currentToon.gagTrack !== "toonup"){
-                    for (let cog in cogMultiplierValue) {
-
-                        let gagMultiplier = cogMultiplierValue[cog].gagMultipliers.throw
-                        
-                        if (gagMultiplier === 0) {
+                switch (currentToon.gagTrack) {
+                    case 'toonup':
+                        console.log('toonup')
+                        break;
+                    case 'trap':
+                        console.log('trap')
+                        for (let cog in cogMultiplierValue) {
+                            if (cogMultiplierValue[cog].luredMultiplier === 1.5 ) {
+                                cogMultiplierValue[cog].gagMultipliers.trap = 0
+                            }
+                            if (cogMultiplierValue[cog].luredMultiplier === 1) {
+                                cogMultiplierValue[cog].gagMultipliers.trap = 1.5
+                            }
                             
-                            cogMultiplierValue[cog].gagMultipliers[currentToon.gagTrack] = 1
                         }
-                         if (gagMultiplier === 1) {
-                            cogMultiplierValue[cog].gagMultipliers[currentToon.gagTrack] = 1.2
+                        break;
+                    case 'lure':
+                        console.log('lure')
+                        for (let cog in cogMultiplierValue) {
+                            cogMultiplierValue[cog].luredMultiplier = 1.5
                         }
-                    }
+                        break;
+                    case 'sound':
+                        for (let cog in cogMultiplierValue) {
+                            if (cogMultiplierValue[cog].gagMultipliers.sound === 1) {
+                                cogMultiplierValue[cog].gagMultipliers.sound = 1.2
+                            }
+                            if (cogMultiplierValue[cog].gagMultipliers.sound === 0) {
+                                cogMultiplierValue[cog].gagMultipliers.sound = 1
+                            }
+                        }
+                        break;
+                    case 'throw':
+                        for (let cog in cogMultiplierValue) {
+                            if (cogMultiplierValue[cog].gagMultipliers.throw === 1) {
+                                cogMultiplierValue[cog].gagMultipliers.throw = 1.2
+                            }
+                            if (cogMultiplierValue[cog].gagMultipliers.throw === 0) {
+                                cogMultiplierValue[cog].gagMultipliers.throw = 1
+                            }
+                        }
+                        break;
+                    case 'squirt':
+                        console.log('squirt')
+                        break;
+                    case 'drop':
+                        console.log('drop')
+                        break;
+                    default:
+                        console.log('Gag track not found')
                 }
             }
 
@@ -246,7 +288,7 @@ export default function Toontown(props) {
                 }  
             }
         }
-        console.log("Multiplier Value: ", cogMultiplierValue)
+        console.log("Final Multiplier Value: ", cogMultiplierValue)
 
             //Resolve damage
             setCogList((prevData) => {
@@ -254,30 +296,98 @@ export default function Toontown(props) {
                     let currentToon = currentRoundToonGags[toon]
                     let cogTarget = currentToon.cogTarget
                     let currentCog = prevData[cogTarget]
-
-                    let currentTrackMultiplier = cogMultiplierValue[cogTarget].gagMultipliers[currentToon.gagTrack]
-                    let currentLureMultiplier = cogMultiplierValue[cogTarget].luredMultiplier
                     
                     console.log('currentCog:', currentCog)
                     //Targetting all
-                    if (currentToon.cogTarget > cogList.length) {
+                    if (currentToon.cogTarget === 5) {
                         console.log("Still working on targetting all, sorry...")
-                        
+
+
+                        //Track is toonup
+                        console.log("Toonup - All detected")
+
+                        //Track is trap
+                        if (currentToon.gagTrack === 'trap') {
+                            for (let cog in cogList) {
+                                let curCog = cogList[cog]
+                                if (cogMultiplierValue[cog].luredMultiplier === 1.5) {
+                                    curCog.cogHP -= (currentToon.gagValue * cogMultiplierValue[cog].gagMultipliers.trap)
+                                }
+                                cogMultiplierValue[cog].luredMultiplier = 1
+                            }
+                        }
+
+                        //Track is lure
+                        if (currentToon.gagTrack === 'lure') {
+                            for (let cog in cogList) {
+                                let curCog = cogList[cog]
+                                if (cogMultiplierValue[cog].luredMultiplier === 1.5) {
+                                    curCog.cogHP -= currentToon.gagValue
+                                }
+                                cogMultiplierValue[cog].luredMultiplier = 1
+                            }
+                        }
+
+                        //Track is sound
+                        if (currentToon.gagTrack === 'sound') {
+                            for (let cog in cogList) {
+                                let curCog = cogList[cog]
+                              
+                                curCog.cogHP -= Math.round(currentToon.gagValue * cogMultiplierValue[cog].gagMultipliers.sound)
+                                cogMultiplierValue[cog].luredMultiplier = 1
+                            }
+                        }
+                        //Track is throw
+                        if (currentToon.gagTrack === 'throw') {
+                            for (let cog in cogList) {
+                                let curCog = cogList[cog]
+                              
+                                curCog.cogHP -= Math.round(currentToon.gagValue * cogMultiplierValue[cog].gagMultipliers.throw)
+                                cogMultiplierValue[cog].luredMultiplier = 1
+                            }
+                        }
+
+                        //Track is squirt
+                        if (currentToon.gagTrack === 'squirt') {
+                            for (let cog in cogList) {
+                                let curCog = cogList[cog]
+                              
+                                curCog.cogHP -= Math.round(currentToon.gagValue * cogMultiplierValue[cog].gagMultipliers.squirt)
+                                cogMultiplierValue[cog].luredMultiplier = 1
+                            }
+                        }
+
+                        //Track is drop
+                        if (currentToon.gagTrack === 'drop') {
+                            for (let cog in cogList) {
+                                let curCog = cogList[cog]
+                                if (cogMultiplierValue[cog].luredMultiplier === 1) {
+                                    curCog.cogHP -= Math.round(currentToon.gagValue * cogMultiplierValue[cog].gagMultipliers.drop)
+                                }
+                            }
+                        }
                     }
+
                     //Targetting one
-                    else if (currentToon.cogTarget <= cogList.length) {
+                    if (currentToon.cogTarget <= cogList.length) {
+                        let currentTrackMultiplier = cogMultiplierValue[cogTarget].gagMultipliers[currentToon.gagTrack]
+                        let currentLureMultiplier = cogMultiplierValue[cogTarget].luredMultiplier
                         //Track is toonup
                         if (currentToon.gagTrack === 'toonup') {
-
+                            console.log("Single toonup selected")
                         }
                         //Track is trap
                         if (currentToon.gagTrack === 'trap') {
                             if (cogMultiplierValue[prevData.cogTarget].luredMultiplier !== 1.5) {
                                 currentCog.cogHP -= (currentToon.gagValue)
                             }
+                            if (cogMultiplierValue[prevData.cogTarget].luredMultiplier === 1.5) {
+                                currentCog.cogHP -= (currentToon.gagValue)
+                            }
                         }
 
                         //Track is lure
+                        if(currentToon)
 
                         //Track is sound
                         if (currentToon.gagTrack === 'sound') {

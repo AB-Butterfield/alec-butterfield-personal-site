@@ -15,7 +15,8 @@ export default function ToontownSingleGag(props) {
         props.isTrackSelected(gagTrack.toLowerCase())
         props.isGagSelected(e.target.dataset.gagname)
         props.isGagValue(e.target.dataset.gagvalue)
-        // props.isCurrentTarget(e.target.dataset.target)
+        props.isCurrentTarget(e.target.dataset.gagtarget)
+        console.log("Single gag target: ", e.target.dataset.gagtarget)
     }
 
     return (
@@ -24,6 +25,7 @@ export default function ToontownSingleGag(props) {
             // id = "id"
             data-gagname = {gagName}
             data-gagvalue = {gagValue}
+            data-gagtarget = {gagTarget}
             onClick={handleClick}>
             {gagName}
         </div>
