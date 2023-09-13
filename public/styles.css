@@ -137,6 +137,10 @@
   font-size: 62px;
   max-width: 95vw;
 }
+.gizmos-toontown-pass-turn-btn {
+  height: 30px;
+  width: auto;
+}
 .gizmos-single-boba-img {
   display: flex;
   max-width: 300px;
@@ -171,6 +175,34 @@
   border-radius: 10px;
   padding: 10px;
 }
+.toon-0 {
+  border-style: solid;
+  border-color: red;
+  border-radius: 10px;
+  border-width: 5px;
+  padding: 5px;
+}
+.toon-1 {
+  border-style: solid;
+  border-color: blue;
+  border-radius: 10px;
+  border-width: 5px;
+  padding: 5px;
+}
+.toon-2 {
+  border-style: solid;
+  border-color: green;
+  border-radius: 10px;
+  border-width: 5px;
+  padding: 5px;
+}
+.toon-3 {
+  border-style: solid;
+  border-color: yellow;
+  border-radius: 10px;
+  border-width: 5px;
+  padding: 5px;
+}
 .gizmos-toontown-main {
   display: flex;
   flex-direction: column;
@@ -188,6 +220,7 @@
 }
 .gizmos-toontown-gag-name {
   width: 100px;
+  text-shadow: 0 0 3px #000000, 0 0 5px #000000;
 }
 .gizmos-toontown-gag-track {
   display: flex;
@@ -224,6 +257,31 @@
   margin-right: 5vw;
   width: 100px;
 }
+.gizmos-toontown-single-cog-hp {
+  height: 10px;
+  background-color: grey;
+  width: 100px;
+}
+.gizmos-toontown-single-cog-hp-indicator {
+  height: 10px;
+  width: 100px;
+}
+#cog-0 {
+  background-color: aqua;
+  width: 100px;
+}
+#cog-1 {
+  background-color: red;
+  width: 100px;
+}
+#cog-2 {
+  background-color: green;
+  width: 100px;
+}
+#cog-3 {
+  background-color: purple;
+  width: 100px;
+}
 .gizmos-toontown-single-gag {
   font-size: 12px;
   padding: 5px;
@@ -248,6 +306,10 @@
   align-items: center;
   margin: 10px;
   font-size: 18px;
+}
+.gizmos-toontown-single-toon-gag {
+  height: auto;
+  margin: 5px;
 }
 .gizmos-toontown-toons-container {
   display: flex;
