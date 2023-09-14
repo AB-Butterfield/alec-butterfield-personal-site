@@ -138,8 +138,9 @@
   max-width: 95vw;
 }
 .gizmos-toontown-pass-turn-btn {
-  height: 30px;
+  height: auto;
   width: auto;
+  margin-bottom: 5px;
 }
 .gizmos-single-boba-img {
   display: flex;
@@ -262,12 +263,17 @@
   background-color: grey;
   width: 100px;
 }
+.gizmos-toontown-single-cog-hp-input {
+  width: 50px;
+  background-color: #dedede;
+  margin: 5px;
+}
 .gizmos-toontown-single-cog-hp-indicator {
   height: 10px;
   width: 100px;
 }
 #cog-0 {
-  background-color: aqua;
+  background-color: red;
   width: 100px;
 }
 #cog-1 {
@@ -275,12 +281,16 @@
   width: 100px;
 }
 #cog-2 {
-  background-color: green;
+  background-color: red;
   width: 100px;
 }
 #cog-3 {
-  background-color: purple;
+  background-color: red;
   width: 100px;
+}
+.gizmos-toontown-single-cog-level-select {
+  height: 20px;
+  width: 40px;
 }
 .gizmos-toontown-single-gag {
   font-size: 12px;

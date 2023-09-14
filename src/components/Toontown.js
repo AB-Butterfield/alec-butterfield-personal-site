@@ -15,26 +15,26 @@ export default function Toontown(props) {
         {
             cogId: 0,
             cogLevel: 1,
-            cogHP: 25,
-            cogMaxHP: 25
+            cogHP: 6,
+            cogMaxHP: 6
         },
         {
             cogId: 1,
             cogLevel: 1,
-            cogHP: 25,
-            cogMaxHP: 25
+            cogHP: 6,
+            cogMaxHP: 6
         },
         {
             cogId: 2,
             cogLevel: 1,
-            cogHP: 25,
-            cogMaxHP: 25
+            cogHP: 6,
+            cogMaxHP: 6
         },
         {
             cogId: 3,
             cogLevel: 1,
-            cogHP: 25,
-            cogMaxHP: 25
+            cogHP: 6,
+            cogMaxHP: 6
         }
     ])
 
@@ -113,6 +113,11 @@ export default function Toontown(props) {
                     prevData[currentToon].gagTrack = currentTrack
                 })
             }}
+            isCogHPUpdate = {(cog, newCogHP, cogMaxHP) => {setCogList((prevData) => {
+                prevData[cog].cogHP = newCogHP
+                prevData[cog].cogMaxHP = cogMaxHP
+                return (prevData)
+            }, [])}}
             />
         )
     })
@@ -433,18 +438,20 @@ export default function Toontown(props) {
                     }
                 }
                 console.log("prevData: ",prevData)
+
+                //Set cog health bar
                 for (let cog in cogList) {
                     document.getElementById(`cog-${cog}`).style.width = `${(cogList[cog].cogHP / cogList[cog].cogMaxHP) * 100}px`
+                    console.log("Cog maxHP: ", cogList[0].cogMaxHP)
+
                     if (cogList[cog].cogHP <= 0) {
+                        
                         document.getElementById(`cog-${cog}`).style.width = `0px`
                         document.getElementById(`cog-${cog}`).style.backgroundColor = `red`
                     }
                 }
                 return (prevData)
             })
-
-            //Update Cog Health Bar
-            
             
             setCurrentRoundToonGags(() => {
                 return (
@@ -487,17 +494,7 @@ export default function Toontown(props) {
             setCurrentTarget(() => 0)
         }
         
-    function handleCheckGagRound() {
-        console.log(currentRoundToonGags)
-    }
-
-    // function handleSelectAll() {
-    //     setCurrentTarget(() => {
-    //         return 5
-    //     })
-    // }
     useEffect(() => {
-        
         console.log('Updating info...')
     })
 
@@ -523,6 +520,7 @@ export default function Toontown(props) {
             <div className="gizmos-toontown-cog-lock-in">
                 {cogLockInButtons}
             </div>
+            <button className="gizmos-toontown-pass-turn-btn" onClick={handlePassTurn}>SIMULATE</button>
             {/* <button onClick={handleSelectAll}> Target All Cogs</button> */}
             <div className={`gizmos-all-gags-container toon-${currentToon}`}>
                 <div>
@@ -531,7 +529,6 @@ export default function Toontown(props) {
             </div>
             Current Toon: {currentToon + 1}
             {/* <button onClick={handleGagLockIn}>Lock in Gag</button> */}
-            <button className="gizmos-toontown-pass-turn-btn" onClick={handlePassTurn}>SIMULATE</button>
             {/* <button onClick={handleCheckGagRound}>Check Gag Round</button> */}
             <div className="gizmos-toontown-toons-container">
               {toontownToons}
