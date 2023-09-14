@@ -3,24 +3,26 @@ import { useState } from "react"
 import CarouselCard from "../components/CarouselCard"
 import { gizmoData } from "../db/gizmoData"
 import Toontown from "../components/Toontown"
+import ToontownGagCard from "../components/ToontownGagCard"
 
 export default function Gizmos() {
     const [carouselIdx, setCarouselIdx] = useState(0)
     let carouselData = gizmoData[0].data
     const [carouselArray] = useState(carouselData)
 
+    const toontownGags = gizmoData[1].data
+    const [gagClicked, setGagClicked] = useState(0)
+
     //Carousel
     useEffect(() => {
         const lastIdx = (carouselArray.length - 1)
         if (carouselIdx > lastIdx) {
             setCarouselIdx(0)
-            console.log('Going to beginning...')
         }
         if (carouselIdx < lastIdx) {
             setCarouselIdx(lastIdx)
-            console.log('Going to end')
         }
-    }, [carouselIdx, carouselArray  ])
+    }, [carouselIdx, carouselArray])
 
     // useEffect(() => {
     //     let slider = setInterval(() => {
@@ -32,6 +34,10 @@ export default function Gizmos() {
     //     }
     // }, [])
 
+    //Toontown
+
+
+
     return (
         <div className="gizmos-main-container"> Gizmos
             <div className="gizmos-single-name">Sample Carousel for Boba</div>
@@ -39,7 +45,10 @@ export default function Gizmos() {
                 <CarouselCard />
             </div>
             <div className="gizmos-toontown-main">
-                <Toontown />
+                Toontown Battle Simulator
+                <Toontown 
+                data = {toontownGags}
+                />
             </div>
         </div>
     )
