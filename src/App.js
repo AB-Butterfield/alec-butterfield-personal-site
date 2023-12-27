@@ -9,7 +9,7 @@ import Gizmos from "./pages/Gizmos";
 import Goals from "./pages/Goals";
 import Home from "./pages/Home";
 import Projects from "./pages/Projects";
-
+import ToontownPage from "./pages/ToontownPage";
 
 
 export default function App() {
@@ -25,6 +25,7 @@ export default function App() {
                     <Route path="/goals" element={<Goals />}></Route>
                     <Route path="/home" element={<Home />}></Route>
                     <Route path="/projects" element={<Projects />}></Route>
+                    <Route path="/toontown" element={<ToontownPage />}></Route>
                 </Routes>
             </BrowserRouter>
             <Footer />
