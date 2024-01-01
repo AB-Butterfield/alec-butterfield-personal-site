@@ -414,7 +414,6 @@ export default function ToontownPage() {
                         }
                     }
                 }
-                console.log("prevData: ",prevData)
                 return (prevData)
             })
             setCurrentRoundToonGags(() => {

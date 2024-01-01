@@ -49,12 +49,16 @@ export const toonSlice = createSlice({
         increment: (state) => {
             state.value += 1
         },
-        damageToon: (state) => {
-            state.toons.toon1.currentHp -= 1
+        damageToon: (state, action) => {
+            state.toons.toon1.currentHp -= action.payload
+        },
+        toonSelectGag: (state, action) => {
+            state.toons.toon1.selectedGag = "New gag"
+            console.log("toonSelectGag payload: ", action.payload)
         }
     }
 })
 
-export const { increment, damageToon } = toonSlice.actions
+export const { increment, damageToon, toonSelectGag } = toonSlice.actions
 
 export default toonSlice.reducer
