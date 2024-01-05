@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toonSelectGag } from "../appSlices/toonSlice";
 import { updateCurrentToonGag } from "../appSlices/roundInfoSlice";
 
@@ -7,6 +7,7 @@ export default function ToontownSingleGag(props) {
     const {gagName, gagValue, gagTarget, gagTrack} = props
     let selectedGag = ""
     const dispatch = useDispatch()
+    const roundData = useSelector((state) => state.roundInfoReducer)
     
     if (props.currentGag === gagName) {
         console.log(`${gagName} selected!`)
@@ -20,8 +21,8 @@ export default function ToontownSingleGag(props) {
         // props.isGagSelected(e.target.dataset.gagname)
         // props.isGagValue(e.target.dataset.gagvalue)
         // props.isCurrentTarget(e.target.dataset.gagtarget)
-        dispatch(toonSelectGag({gagName, gagValue}))
-        dispatch(updateCurrentToonGag({gagName}))
+        dispatch(toonSelectGag({gagName, gagValue, currentToonTurnId: roundData.currentToonTurnId}))
+        dispatch(updateCurrentToonGag({gagName, currentToonTurnId: roundData.currentToonTurnId}))
         // console.log(e.target.dataset)
     }
 

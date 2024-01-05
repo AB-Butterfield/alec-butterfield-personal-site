@@ -8,7 +8,7 @@ const store = configureStore({
     reducer: {
         toonReducer: toonSlice,
         cogReducer: cogSlice,
-        roundInfoSlice: roundInfoSlice,
+        roundInfoReducer: roundInfoSlice,
     },
 })
 

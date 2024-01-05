@@ -11,8 +11,7 @@ export const roundInfoSlice = createSlice({
     initialState,
     reducers: {
         updateCurrentToonGag: (state, action) => {
-            state.toons.toon[state.currentToonTurnId].selectedGag = 'gag Updated'
-            console.log( state.toons.toon[state.currentToonTurnId].selectedGag)
+            console.log("roundInfoSlice action.payload: ", action.payload.currentToonTurnId)
         }
     }
 })
