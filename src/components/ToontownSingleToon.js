@@ -1,8 +1,13 @@
 import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 export default function ToontownSingleToon(props) {
     
     const {gagName, gagValue, cogTarget, toonId} = props.toon
+
+    const toons = useSelector((state) => state.toons)
+
+    console.log('SingleToon toons: ', toons)
 
     // const isMyTurn = props.currentToon = toonId ? toonId : "not-my-turn"
     // useEffect(() => {

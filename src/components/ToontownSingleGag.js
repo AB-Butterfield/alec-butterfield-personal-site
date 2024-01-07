@@ -21,7 +21,7 @@ export default function ToontownSingleGag(props) {
         // props.isGagSelected(e.target.dataset.gagname)
         // props.isGagValue(e.target.dataset.gagvalue)
         // props.isCurrentTarget(e.target.dataset.gagtarget)
-        dispatch(toonSelectGag({gagName, gagValue, currentToonTurnId: roundData.currentToonTurnId}))
+        dispatch(toonSelectGag({gagName, gagValue, gagTarget, gagTrack, currentToonTurnId: roundData.currentToonTurnId}))
         dispatch(updateCurrentToonGag({gagName, currentToonTurnId: roundData.currentToonTurnId}))
         // console.log(e.target.dataset)
     }
