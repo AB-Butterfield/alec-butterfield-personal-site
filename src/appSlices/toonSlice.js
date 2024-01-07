@@ -9,7 +9,7 @@ const initialState = {
             currentHp: 20,
             name: 'Lolly',
             target: -1,
-            selectedGag: 'none',
+            selectedGagName: 'none',
             selectedTree: 'none'
         },
         toon2: {
@@ -18,7 +18,7 @@ const initialState = {
             currentHp: 20,
             name: 'Lolly',
             target: -1,
-            selectedGag: 'none',
+            selectedGagName: 'none',
             selectedTree: 'none'
         },
         toon3: {
@@ -27,7 +27,7 @@ const initialState = {
             currentHp: 20,
             name: 'Lolly',
             target: -1,
-            selectedGag: 'none',
+            selectedGagName: 'none',
             selectedTree: 'none'
         },
         toon4: {
@@ -36,7 +36,7 @@ const initialState = {
             currentHp: 20,
             name: 'Lolly',
             target: -1,
-            selectedGag: 'none',
+            selectedGagName: 'none',
             selectedTree: 'none'
         }
     }
@@ -53,24 +53,24 @@ export const toonSlice = createSlice({
             state.toons.toon1.currentHp -= action.payload
         },
         toonSelectGag: (state, action) => {
-            const currentToonId = action.payload.currentToonTurnId
             const currentGag = action.payload.currentGag
+
             console.log("Action Payload: ", action.payload)
-            console.log("currentToonId: ", currentToonId)
             console.log("also this: ", action.payload.currentToonTurnId)
 
-            switch(currentToonId) {
-                case 1:
-                    state.toons.toon1.selectedGag = currentGag
+            switch(action.payload.currentToonTurnId) {
+                case '1':
+                    state.toons.toon1.selectedGagName = action.payload.gagName
+                    console.log('Gag set!')
                     break;
-                case 2:
-                    state.toons.toon2.selectedGag = currentGag
+                case '2':
+                    state.toons.toon2.selectedGagName = currentGag
                     break;
-                case 3:
-                    state.toons.toon3.selectedGag = currentGag
+                case '3':
+                    state.toons.toon3.selectedGagName = currentGag
                     break;
-                case 4:
-                    state.toons.toon4.selectedGag = currentGag
+                case '4':
+                    state.toons.toon4.selectedGagName = currentGag
                     break;
                 default:
                     console.log('Error: ToonId Not Found In State')
