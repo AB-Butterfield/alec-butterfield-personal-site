@@ -60,25 +60,25 @@ export const toonSlice = createSlice({
             console.log("Action Payload: ", action.payload)
 
             switch(action.payload.currentToonTurnId) {
-                case '1':
+                case 1:
                     state.toons.toon1.selectedGagName = action.payload.gagName
                     state.toons.toon1.selectedGagDamage = action.payload.gagValue
                     state.toons.toon1.target = action.payload.gagTarget
                     state.toons.toon1.selectedGagTrack = action.payload.gagTrack
                     break;
-                case '2':
+                case 2:
                     state.toons.toon2.selectedGagName = action.payload.gagName
                     state.toons.toon2.selectedGagDamage = action.payload.gagValue
                     state.toons.toon2.target = action.payload.gagTarget
                     state.toons.toon2.selectedGagTrack = action.payload.gagTrack
                     break;
-                case '3':
+                case 3:
                     state.toons.toon3.selectedGagName = action.payload.gagName
                     state.toons.toon3.selectedGagDamage = action.payload.gagValue
                     state.toons.toon3.target = action.payload.gagTarget
                     state.toons.toon3.selectedGagTrack = action.payload.gagTrack
                     break;
-                case '4':
+                case 4:
                     state.toons.toon4.selectedGagName = action.payload.gagName
                     state.toons.toon4.selectedGagDamage = action.payload.gagValue
                     state.toons.toon4.target = action.payload.gagTarget

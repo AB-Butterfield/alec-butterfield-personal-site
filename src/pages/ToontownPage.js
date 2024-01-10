@@ -5,11 +5,13 @@ import { gizmoData } from "../db/gizmoData";
 import ToontownGagCard from "../components/ToontownGagCard";
 import ToontownSingleToon from "../components/ToontownSingleToon";
 import ToontownSingleCog from "../components/ToontownSingleCog";
+import { updateCurrentToonId } from "../appSlices/roundInfoSlice";
 
 export default function ToontownPage() {
 
     const dispatch = useDispatch()
     const toon = useSelector((state) => state.toonReducer.toons.toon1.currentHp)
+    const currentToonId = useSelector((state) => state.roundInfoReducer.currentToonTurnId)
 
     //From old Toontown
     const [currentGag, setCurrentGag] = useState("")
@@ -111,10 +113,10 @@ export default function ToontownPage() {
                 isCurrentTarget = {(cog) => (setCurrentTarget(cog))}
                 currentToon = {currentToon}
                 lockInGag = {() => {setCurrentRoundToonGags((prevData) => {
-                    prevData[currentToon].gagName = currentGag
-                    prevData[currentToon].gagValue = currentValue
-                    prevData[currentToon].cogTarget = currentTarget
-                    prevData[currentToon].gagTrack = currentTrack
+                    // prevData[currentToon].gagName = currentGag
+                    // prevData[currentToon].gagValue = currentValue
+                    // prevData[currentToon].cogTarget = currentTarget
+                    // prevData[currentToon].gagTrack = currentTrack
                 })
             }}
             />
@@ -152,6 +154,10 @@ export default function ToontownPage() {
     }
 
     function handlePassTurn() {
+        dispatch(updateCurrentToonId({currentToonId}))
+    }
+
+    function dontHandlePassTurn() {
         
         //What to handle when passing turn:
         //Set cogs as Trapped, set cogs as Lured
@@ -498,7 +504,7 @@ export default function ToontownPage() {
                 {toontownGags}
                 </div>
             </div>
-            Current Toon: {currentToon + 1}
+            Current Toon: {currentToonId}
             {/* <button onClick={handleGagLockIn}>Lock in Gag</button> */}
             <button onClick={handlePassTurn}>Pass turn</button>
             <button onClick={handleCheckGagRound}>Check Gag Round</button>
