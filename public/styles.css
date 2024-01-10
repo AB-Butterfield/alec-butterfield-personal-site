@@ -534,6 +534,9 @@ body {
 .goals-single-goal {
   font-size: 24px;
 }
+.toontown-main-container {
+  border: 0cap;
+}
 body {
   overflow-x: hidden;
 }

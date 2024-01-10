@@ -1,24 +1,37 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { updateCurrentToonId } from "../appSlices/roundInfoSlice";
 
 export default function ToontownSingleCog(props) {
-    const {cogId, cogLevel, cogHP, cogMaxHP} = props.cog
+    const {cogId, cogLevel, cogHP} = props.cog
+    const dispatch = useDispatch()
+    const currentToonId = useSelector((state) => state.roundInfoReducer.currentToonTurnId)
+    // const currentSelectedGag = useSelector((state) =>)
+
 
     function handleSetTarget(e) {
+        console.log('Handle set target...')
         props.isCurrentTarget(cogId)
         props.lockInGag()
     }
 
-    function handleChangeCogHP() {
-        let newCogLevel = document.getElementById(`cog-${cogId}-level`).value
-        let newCogHP = (newCogLevel === '12') ? 196 : ((Number(newCogLevel) + 1) * (Number(newCogLevel) + 2))
-        document.getElementById(`cog-${cogId}-hp-input`).value = newCogHP
-        props.isCogHPUpdate(cogId, newCogHP, newCogHP)
+    function handleClick(e) {
+        console.log('handling Cog Target Click...')
+        dispatch(updateCurrentToonId({currentToonId}))
+
+//     function handleChangeCogHP() {
+//         let newCogLevel = document.getElementById(`cog-${cogId}-level`).value
+//         let newCogHP = (newCogLevel === '12') ? 196 : ((Number(newCogLevel) + 1) * (Number(newCogLevel) + 2))
+//         document.getElementById(`cog-${cogId}-hp-input`).value = newCogHP
+//         props.isCogHPUpdate(cogId, newCogHP, newCogHP)
     }
 
     return (
         <div className={`gizmos-toontown-single-cog`}>
             <div>Cog {cogId + 1}</div>
-            <div>Level: 
+            <div>Level: {cogLevel}</div>
+            <div>HP: {cogHP}</div>
+            <button onClick={handleClick}>Target me</button>
             {/* {cogLevel}   */}
                 <select id={`cog-${cogId}-level`} onChange={handleChangeCogHP} className="gizmos-toontown-single-cog-level-select">
                     <option value="1">1</option>
