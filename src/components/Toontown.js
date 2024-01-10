@@ -15,22 +15,26 @@ export default function Toontown(props) {
         {
             cogId: 0,
             cogLevel: 1,
-            cogHP: 25,
+            cogHP: 6,
+            cogMaxHP: 6
         },
         {
             cogId: 1,
             cogLevel: 1,
-            cogHP: 25
+            cogHP: 6,
+            cogMaxHP: 6
         },
         {
             cogId: 2,
             cogLevel: 1,
-            cogHP: 25
+            cogHP: 6,
+            cogMaxHP: 6
         },
         {
             cogId: 3,
             cogLevel: 1,
-            cogHP: 25
+            cogHP: 6,
+            cogMaxHP: 6
         }
     ])
 
@@ -109,6 +113,11 @@ export default function Toontown(props) {
                     prevData[currentToon].gagTrack = currentTrack
                 })
             }}
+            isCogHPUpdate = {(cog, newCogHP, cogMaxHP) => {setCogList((prevData) => {
+                prevData[cog].cogHP = newCogHP
+                prevData[cog].cogMaxHP = cogMaxHP
+                return (prevData)
+            }, [])}}
             />
         )
     })
@@ -220,10 +229,9 @@ export default function Toontown(props) {
 
                 switch (currentToon.gagTrack) {
                     case 'toonup':
-                        console.log('toonup')
+                        console.log('toonup-all selected')
                         break;
                     case 'trap':
-                        console.log('trap')
                         for (let cog in cogMultiplierValue) {
                             if (cogMultiplierValue[cog].luredMultiplier === 1.5 ) {
                                 cogMultiplierValue[cog].gagMultipliers.trap = 0
@@ -235,7 +243,6 @@ export default function Toontown(props) {
                         }
                         break;
                     case 'lure':
-                        console.log('lure')
                         for (let cog in cogMultiplierValue) {
                             cogMultiplierValue[cog].luredMultiplier = 1.5
                         }
@@ -261,10 +268,24 @@ export default function Toontown(props) {
                         }
                         break;
                     case 'squirt':
-                        console.log('squirt')
+                        for (let cog in cogMultiplierValue) {
+                            if (cogMultiplierValue[cog].gagMultipliers.squirt === 1) {
+                                cogMultiplierValue[cog].gagMultipliers.squirt = 1.2
+                            }
+                            if (cogMultiplierValue[cog].gagMultipliers.squirt === 0) {
+                                cogMultiplierValue[cog].gagMultipliers.squirt = 1
+                            }
+                        }
                         break;
                     case 'drop':
-                        console.log('drop')
+                        for (let cog in cogMultiplierValue) {
+                            if (cogMultiplierValue[cog].gagMultipliers.drop === 1) {
+                                cogMultiplierValue[cog].gagMultipliers.drop = 1.2
+                            }
+                            if (cogMultiplierValue[cog].gagMultipliers.drop === 0) {
+                                cogMultiplierValue[cog].gagMultipliers.drop = 1
+                            }
+                        }
                         break;
                     default:
                         console.log('Gag track not found')
@@ -277,7 +298,8 @@ export default function Toontown(props) {
 
                 if (currentTrack === 'lure') {
                     cogMultiplierValue[currentToon.cogTarget].luredMultiplier = 1.5
-                } else {
+                } 
+                if (currentTrack === 'trap') {
                     let changingMultiplier = cogMultiplierValue[currentToon.cogTarget].gagMultipliers[currentTrack]
                     if (changingMultiplier === 0) {
                         cogMultiplierValue[currentToon.cogTarget].gagMultipliers[currentTrack] = 1
@@ -286,6 +308,16 @@ export default function Toontown(props) {
                         cogMultiplierValue[currentToon.cogTarget].gagMultipliers[currentTrack] = 1
                     }
                 }  
+                if (currentTrack !== 'lure' && currentTrack !== 'trap') {
+                    let changingMultiplier = cogMultiplierValue[currentToon.cogTarget].gagMultipliers[currentTrack]
+                    if (changingMultiplier === 0) {
+                        cogMultiplierValue[currentToon.cogTarget].gagMultipliers[currentTrack] = 1
+                    }
+                    if (changingMultiplier === 1) {
+                        cogMultiplierValue[currentToon.cogTarget].gagMultipliers[currentTrack] = 1.2
+                    }
+                }  
+                
             }
         }
         console.log("Final Multiplier Value: ", cogMultiplierValue)
@@ -311,7 +343,7 @@ export default function Toontown(props) {
                             for (let cog in cogList) {
                                 let curCog = cogList[cog]
                                 if (cogMultiplierValue[cog].luredMultiplier === 1.5) {
-                                    curCog.cogHP -= (currentToon.gagValue * cogMultiplierValue[cog].gagMultipliers.trap)
+                                    curCog.cogHP -= Math.floor(currentToon.gagValue * cogMultiplierValue[cog].gagMultipliers.trap)
                                 }
                                 cogMultiplierValue[cog].luredMultiplier = 1
                             }
@@ -322,7 +354,7 @@ export default function Toontown(props) {
                             for (let cog in cogList) {
                                 let curCog = cogList[cog]
                                 if (cogMultiplierValue[cog].luredMultiplier === 1.5) {
-                                    curCog.cogHP -= currentToon.gagValue
+                                    // curCog.cogHP -= currentToon.gagValue
                                 }
                                 cogMultiplierValue[cog].luredMultiplier = 1
                             }
@@ -333,7 +365,7 @@ export default function Toontown(props) {
                             for (let cog in cogList) {
                                 let curCog = cogList[cog]
                               
-                                curCog.cogHP -= Math.round(currentToon.gagValue * cogMultiplierValue[cog].gagMultipliers.sound)
+                                curCog.cogHP -= Math.floor(currentToon.gagValue * cogMultiplierValue[cog].gagMultipliers.sound)
                                 cogMultiplierValue[cog].luredMultiplier = 1
                             }
                         }
@@ -342,7 +374,7 @@ export default function Toontown(props) {
                             for (let cog in cogList) {
                                 let curCog = cogList[cog]
                               
-                                curCog.cogHP -= Math.round(currentToon.gagValue * cogMultiplierValue[cog].gagMultipliers.throw)
+                                curCog.cogHP -= Math.floor(currentToon.gagValue * cogMultiplierValue[cog].gagMultipliers.throw)
                                 cogMultiplierValue[cog].luredMultiplier = 1
                             }
                         }
@@ -352,7 +384,7 @@ export default function Toontown(props) {
                             for (let cog in cogList) {
                                 let curCog = cogList[cog]
                               
-                                curCog.cogHP -= Math.round(currentToon.gagValue * cogMultiplierValue[cog].gagMultipliers.squirt)
+                                curCog.cogHP -= Math.floor(currentToon.gagValue * cogMultiplierValue[cog].gagMultipliers.squirt)
                                 cogMultiplierValue[cog].luredMultiplier = 1
                             }
                         }
@@ -362,7 +394,7 @@ export default function Toontown(props) {
                             for (let cog in cogList) {
                                 let curCog = cogList[cog]
                                 if (cogMultiplierValue[cog].luredMultiplier === 1) {
-                                    curCog.cogHP -= Math.round(currentToon.gagValue * cogMultiplierValue[cog].gagMultipliers.drop)
+                                    curCog.cogHP -= Math.floor(currentToon.gagValue * cogMultiplierValue[cog].gagMultipliers.drop)
                                 }
                             }
                         }
@@ -379,7 +411,7 @@ export default function Toontown(props) {
                         //Track is trap
                         if (currentToon.gagTrack === 'trap') {
                             if (cogMultiplierValue[prevData.cogTarget].luredMultiplier !== 1.5) {
-                                currentCog.cogHP -= (currentToon.gagValue)
+                                // currentCog.cogHP -= (currentToon.gagValue)
                             }
                             if (cogMultiplierValue[prevData.cogTarget].luredMultiplier === 1.5) {
                                 currentCog.cogHP -= (currentToon.gagValue)
@@ -387,28 +419,40 @@ export default function Toontown(props) {
                         }
 
                         //Track is lure
-                        if(currentToon)
 
                         //Track is sound
                         if (currentToon.gagTrack === 'sound') {
-                            currentCog.cogHP -= (currentToon.gagValue)
+                            currentCog.cogHP -= Math.floor(currentToon.gagValue)
                         }
                         //Track is Throw or Squirt
                         if (currentToon.gagTrack === 'throw' || currentToon.gagTrack === 'squirt') {
                             console.log('currentLureMultiplier: ', currentLureMultiplier)
-                            currentCog.cogHP -= (currentToon.gagValue * currentTrackMultiplier * currentLureMultiplier)
+                            currentCog.cogHP -= Math.floor(currentToon.gagValue * currentTrackMultiplier * currentLureMultiplier)
                         }
                         //Track is drop
                         if (currentToon.gagTrack === 'drop') {
                             if (cogMultiplierValue[currentCog].luredMultiplier !== 1.5) {
-                                currentCog.cogHP -= (currentToon.gagValue * currentTrackMultiplier)
+                                currentCog.cogHP -= Math.floor(currentToon.gagValue * currentTrackMultiplier)
                             }
                         }
                     }
                 }
                 console.log("prevData: ",prevData)
+
+                //Set cog health bar
+                for (let cog in cogList) {
+                    document.getElementById(`cog-${cog}`).style.width = `${(cogList[cog].cogHP / cogList[cog].cogMaxHP) * 100}px`
+                    console.log("Cog maxHP: ", cogList[0].cogMaxHP)
+
+                    if (cogList[cog].cogHP <= 0) {
+                        
+                        document.getElementById(`cog-${cog}`).style.width = `0px`
+                        document.getElementById(`cog-${cog}`).style.backgroundColor = `red`
+                    }
+                }
                 return (prevData)
             })
+            
             setCurrentRoundToonGags(() => {
                 return (
                     [
@@ -450,15 +494,6 @@ export default function Toontown(props) {
             setCurrentTarget(() => 0)
         }
         
-    function handleCheckGagRound() {
-        console.log(currentRoundToonGags)
-    }
-
-    function handleSelectAll() {
-        setCurrentTarget(() => {
-            return 5
-        })
-    }
     useEffect(() => {
         console.log('Updating info...')
     })
@@ -485,16 +520,16 @@ export default function Toontown(props) {
             <div className="gizmos-toontown-cog-lock-in">
                 {cogLockInButtons}
             </div>
-            <button onClick={handleSelectAll}> Target All Cogs</button>
-            <div className="gizmos-all-gags-container">
+            <button className="gizmos-toontown-pass-turn-btn" onClick={handlePassTurn}>SIMULATE</button>
+            {/* <button onClick={handleSelectAll}> Target All Cogs</button> */}
+            <div className={`gizmos-all-gags-container toon-${currentToon}`}>
                 <div>
                 {toontownGags}
                 </div>
             </div>
             Current Toon: {currentToon + 1}
             {/* <button onClick={handleGagLockIn}>Lock in Gag</button> */}
-            <button onClick={handlePassTurn}>Pass turn</button>
-            <button onClick={handleCheckGagRound}>Check Gag Round</button>
+            {/* <button onClick={handleCheckGagRound}>Check Gag Round</button> */}
             <div className="gizmos-toontown-toons-container">
               {toontownToons}
             </div>

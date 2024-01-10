@@ -61,7 +61,7 @@
   left: 0;
   bottom: 0;
   right: 0;
-  height: 7vh;
+  height: 50px;
   width: 98vw;
   padding-top: 5px;
   padding-bottom: 5px;
@@ -137,6 +137,11 @@
   font-size: 62px;
   max-width: 95vw;
 }
+.gizmos-toontown-pass-turn-btn {
+  height: auto;
+  width: auto;
+  margin-bottom: 5px;
+}
 .gizmos-single-boba-img {
   display: flex;
   max-width: 300px;
@@ -171,6 +176,34 @@
   border-radius: 10px;
   padding: 10px;
 }
+.toon-0 {
+  border-style: solid;
+  border-color: red;
+  border-radius: 10px;
+  border-width: 5px;
+  padding: 5px;
+}
+.toon-1 {
+  border-style: solid;
+  border-color: blue;
+  border-radius: 10px;
+  border-width: 5px;
+  padding: 5px;
+}
+.toon-2 {
+  border-style: solid;
+  border-color: green;
+  border-radius: 10px;
+  border-width: 5px;
+  padding: 5px;
+}
+.toon-3 {
+  border-style: solid;
+  border-color: yellow;
+  border-radius: 10px;
+  border-width: 5px;
+  padding: 5px;
+}
 .gizmos-toontown-main {
   display: flex;
   flex-direction: column;
@@ -188,6 +221,7 @@
 }
 .gizmos-toontown-gag-name {
   width: 100px;
+  text-shadow: 0 0 3px #000000, 0 0 5px #000000;
 }
 .gizmos-toontown-gag-track {
   display: flex;
@@ -224,6 +258,40 @@
   margin-right: 5vw;
   width: 100px;
 }
+.gizmos-toontown-single-cog-hp {
+  height: 10px;
+  background-color: grey;
+  width: 100px;
+}
+.gizmos-toontown-single-cog-hp-input {
+  width: 50px;
+  background-color: #dedede;
+  margin: 5px;
+}
+.gizmos-toontown-single-cog-hp-indicator {
+  height: 10px;
+  width: 100px;
+}
+#cog-0 {
+  background-color: red;
+  width: 100px;
+}
+#cog-1 {
+  background-color: red;
+  width: 100px;
+}
+#cog-2 {
+  background-color: red;
+  width: 100px;
+}
+#cog-3 {
+  background-color: red;
+  width: 100px;
+}
+.gizmos-toontown-single-cog-level-select {
+  height: 20px;
+  width: 40px;
+}
 .gizmos-toontown-single-gag {
   font-size: 12px;
   padding: 5px;
@@ -248,6 +316,10 @@
   align-items: center;
   margin: 10px;
   font-size: 18px;
+}
+.gizmos-toontown-single-toon-gag {
+  height: auto;
+  margin: 5px;
 }
 .gizmos-toontown-toons-container {
   display: flex;
@@ -365,9 +437,10 @@ body {
 }
 .home-main-container {
   display: flex;
-  justify-content: center;
+  justify-content: top;
   flex-direction: column;
   min-width: 350px;
+  padding-bottom: 50px;
 }
 .home-who-am-I-container {
   display: flex;
@@ -382,7 +455,6 @@ body {
   justify-content: center;
   padding-left: 5%;
   padding-right: 5%;
-  padding-bottom: 70px;
 }
 .what-do-I-do {
   font-size: 48px;
