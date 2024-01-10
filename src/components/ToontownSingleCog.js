@@ -18,12 +18,13 @@ export default function ToontownSingleCog(props) {
     function handleClick(e) {
         console.log('handling Cog Target Click...')
         dispatch(updateCurrentToonId({currentToonId}))
+    }
 
-//     function handleChangeCogHP() {
-//         let newCogLevel = document.getElementById(`cog-${cogId}-level`).value
-//         let newCogHP = (newCogLevel === '12') ? 196 : ((Number(newCogLevel) + 1) * (Number(newCogLevel) + 2))
-//         document.getElementById(`cog-${cogId}-hp-input`).value = newCogHP
-//         props.isCogHPUpdate(cogId, newCogHP, newCogHP)
+    function handleChangeCogHP() {
+        let newCogLevel = document.getElementById(`cog-${cogId}-level`).value
+        let newCogHP = (newCogLevel === '12') ? 196 : ((Number(newCogLevel) + 1) * (Number(newCogLevel) + 2))
+        document.getElementById(`cog-${cogId}-hp-input`).value = newCogHP
+        props.isCogHPUpdate(cogId, newCogHP, newCogHP)
     }
 
     return (
@@ -47,8 +48,7 @@ export default function ToontownSingleCog(props) {
                     <option value="11">11</option>
                     <option value="12">12</option>
                 </select>
-            
-            </div>
+        
             { (cogHP > 0)
                     ? <div>HP: 
                         <input value= {`${cogHP}`} id= {`cog-${cogId}-hp-input`} className="gizmos-toontown-single-cog-hp-input" defaultValue={`${cogHP}`} disabled />
@@ -65,4 +65,4 @@ export default function ToontownSingleCog(props) {
             {/* <button onClick={handleSetTarget}>Select Cog</button> */}
         </div>
     )
-}
+            }
