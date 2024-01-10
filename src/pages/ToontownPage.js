@@ -12,6 +12,7 @@ export default function ToontownPage() {
     const dispatch = useDispatch()
     const toon = useSelector((state) => state.toonReducer.toons.toon1.currentHp)
     const currentToonId = useSelector((state) => state.roundInfoReducer.currentToonTurnId)
+    const currentGagInState = useSelector((state) => state.roundInfoReducer.currentSelectedGag)
 
     //From old Toontown
     const [currentGag, setCurrentGag] = useState("")
@@ -115,7 +116,7 @@ export default function ToontownPage() {
                 lockInGag = {() => {setCurrentRoundToonGags((prevData) => {
                     // prevData[currentToon].gagName = currentGag
                     // prevData[currentToon].gagValue = currentValue
-                    // prevData[currentToon].cogTarget = currentTarget
+                    // prevData[curren  tToon].cogTarget = currentTarget
                     // prevData[currentToon].gagTrack = currentTrack
                 })
             }}
@@ -154,7 +155,7 @@ export default function ToontownPage() {
     }
 
     function handlePassTurn() {
-        dispatch(updateCurrentToonId({currentToonId}))
+        // dispatch(updateCurrentToonId({currentToonId}))
     }
 
     function dontHandlePassTurn() {
@@ -495,16 +496,17 @@ export default function ToontownPage() {
             <div className="gizmos-toontown-cog-container">
                 {toontownCogs}
             </div>
-            <div className="gizmos-toontown-cog-lock-in">
+            {/* <div className="gizmos-toontown-cog-lock-in">
                 {cogLockInButtons}
-            </div>
+            </div> */}
             <button onClick={handleSelectAll}> Target All Cogs</button>
             <div className="gizmos-all-gags-container">
                 <div>
                 {toontownGags}
                 </div>
             </div>
-            Current Toon: {currentToonId}
+            <div>Current gag: {currentGagInState.currentGagName}, Damage: {currentGagInState.currentGagValue}</div>
+            <div>Current Toon: {currentToonId}</div>
             {/* <button onClick={handleGagLockIn}>Lock in Gag</button> */}
             <button onClick={handlePassTurn}>Pass turn</button>
             <button onClick={handleCheckGagRound}>Check Gag Round</button>

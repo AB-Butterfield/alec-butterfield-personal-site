@@ -2,7 +2,12 @@ import {createSlice} from "@reduxjs/toolkit"
 
 const initialState = {
     value: 0,
-    currentSelectedGag: 'N/a',
+    currentSelectedGag: {
+        currentGagName: "N/a",
+        currentGagValue: 0,
+        boolCurrentGagTargetAll: false,
+        currentGagTrack: -1
+    },
     currentToonTurnId: 1
 }
 
@@ -11,7 +16,8 @@ export const roundInfoSlice = createSlice({
     initialState,
     reducers: {
         updateCurrentToonGag: (state, action) => {
-            console.log("roundInfoSlice action.payload: ", action.payload.currentToonTurnId)
+            state.currentSelectedGag = action.payload.gagToAddToState
+            console.log("roundInfoSlice action.payload: ", action.payload)
         },
         updateCurrentToonId: (state, action) => {
             let prevToonId = action.payload.currentToonId

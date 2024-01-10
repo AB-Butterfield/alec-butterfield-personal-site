@@ -17,13 +17,20 @@ export default function ToontownSingleGag(props) {
     }
 
     function handleClick(e) {
+        const gagToAddToState = {
+            currentGagName: gagName,
+            currentGagValue: gagValue,
+            boolCurrentGagTaretAll: gagTarget === "all" ? true : false,
+            currentGagTrack: "Track function not yet added"
+        }
         // props.isTrackSelected(gagTrack.toLowerCase())
         // props.isGagSelected(e.target.dataset.gagname)
         // props.isGagValue(e.target.dataset.gagvalue)
         // props.isCurrentTarget(e.target.dataset.gagtarget)
-        dispatch(toonSelectGag({gagName, gagValue, gagTarget, gagTrack, currentToonTurnId: roundData.currentToonTurnId}))
-        dispatch(updateCurrentToonGag({gagName, currentToonTurnId: roundData.currentToonTurnId}))
-        // console.log(e.target.dataset)
+        console.log('Gag clicked')
+        dispatch(updateCurrentToonGag({gagToAddToState}))
+        // dispatch(toonSelectGag({gagName, gagValue, gagTarget, gagTrack, currentToonTurnId: roundData.currentToonTurnId}))
+        // dispatch(updateCurrentToonGag({gagName, currentToonTurnId: roundData.currentToonTurnId}))
     }
 
     return (
